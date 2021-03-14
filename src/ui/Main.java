@@ -21,7 +21,8 @@ public class Main extends Application {
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		nlc.initialize() ;
+		primaryStage.setTitle("National Book Store");
+		nlc.initialize();
 	}
 
 }
