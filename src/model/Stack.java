@@ -1,35 +1,40 @@
 package model;
 
-public class Stack implements StackInterface<Book> {
+public class Stack<K extends Comparable<K>,V> implements StackInterface<Book<K,V>> {
+	
+	private Book<K,V> top;
+
 	
 	public Stack() {
 		
 	}
 	
 	@Override
-	public Book pop() {
-		
-		return null;
+	public Book<K,V> pop() {
+		Book<K,V> n = top;
+		top = top.getPrevBook();
+		return n;
 	}
 
 	@Override
-	public void push(Book s) {
-		
-		
+	public void push(Book<K,V> s) {
+		top.setNextBook(s);
+		s.setPrevBook(top);
+		top = s;
 	}
 
 	@Override
-	public Book top() {
-		
-		return null;
+	public Book<K,V> top() {
+		return top;
 	}
 
 	@Override
 	public boolean empty() {
-		
-		return false;
+		if(top != null) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
-	
-	
-
 }

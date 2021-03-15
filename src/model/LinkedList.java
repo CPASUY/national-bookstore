@@ -1,6 +1,6 @@
 package model;
 
-public class LinkedList implements LinkedListInterface<String,Book> {
+public class LinkedList<K extends Comparable<K>,V> implements LinkedListInterface<String,Book<K,V>> {
 
 	@Override
 	public boolean add(String isbn) {
@@ -15,7 +15,7 @@ public class LinkedList implements LinkedListInterface<String,Book> {
 	}
 
 	@Override
-	public Book search(String isbn) {
+	public Book<K,V> search(String isbn) {
 		
 		return null;
 	}
