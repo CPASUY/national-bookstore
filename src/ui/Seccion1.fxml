@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" />
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="tableBooks" layoutX="16.0" layoutY="114.0" prefHeight="348.0" prefWidth="648.0">
+        <columns>
+          <TableColumn fx:id="idTitle" prefWidth="75.0" text="Title" />
+          <TableColumn fx:id="idISBN" prefWidth="75.0" text="ISBN" />
+            <TableColumn fx:id="idRack" prefWidth="75.0" text="Rack" />
+            <TableColumn fx:id="idChapter" prefWidth="75.0" text="Chapter" />
+            <TableColumn fx:id="idReview" prefWidth="79.0" text="Review" />
+            <TableColumn fx:id="idCritique" prefWidth="96.0" text="Critique" />
+            <TableColumn fx:id="idCost" prefWidth="96.0" text="Cost" />
+            <TableColumn fx:id="idQuantity" prefWidth="76.0" text="Quantity" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

@@ -1,3 +1,4 @@
+
 package model;
 
 public class HashTable<K extends Comparable<K>, V> implements HashTableInterface<K, V> {

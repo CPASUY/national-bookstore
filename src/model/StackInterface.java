@@ -2,8 +2,6 @@ package model;
 
 public interface StackInterface<T> {
 	
-	
-	
 	public T pop();
 	
 	public void push(T s);
