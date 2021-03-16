@@ -6,6 +6,7 @@ public class Book<K extends Comparable<K>, V> {
 	private V value;
 	private Book<K,V> nextBook;
 	private Book<K,V> prevBook;
+
 	
 	public Book(K key, V value) {
 		this.key = key;

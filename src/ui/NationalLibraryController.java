@@ -21,6 +21,7 @@ public class NationalLibraryController {
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			//Book<String,Integer> b = new Book<String,Integer>("SDSDSDS",2);
 			
 			@Override
 			public void handle(WindowEvent event) {

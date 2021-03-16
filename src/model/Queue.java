@@ -1,43 +1,41 @@
 package model;
 
 public class Queue implements QueueInterface<Client> {
-	private QueuesNode<Client> front;
-	private QueuesNode<Client> last;
+	private Client front;
+	private Client last;
 	
-	public void setFront(QueuesNode<Client> front) {
+	public void setFront(Client front) {
 		this.front = front;
 	}
-	public QueuesNode<Client> getLast() {
+	public Client getLast() {
 		return last;
 	}
-	public void setLast(QueuesNode<Client> last) {
+	public void setLast(Client last) {
 		this.last = last;
 	}
 	@Override
 	public void enqueue(Client c) {
-		QueuesNode<Client> newClient=new QueuesNode<Client>();
-		if(front==null) {
-			front=newClient;
-			last=newClient;
+		if(front == null) {
+			front = c;
+			last =c;
 		}
 		else {
-			newClient.setNext(last);
-			last=newClient;
-		}	
+			last.setNextClient(c);
+			last = c;
+		}
 	}
 
 	@Override
 	public Client dequeue() {
-		QueuesNode<Client> e=last;
-		Client eliminated=e.getType();
-		last=last.getNext();
+		Client eliminated = front;
+		front = front.getNextClient();
 		return eliminated;
 	}
 
 	@Override
 	public Client front() {
-		Client f=front.getType();
-		return f;
+		
+		return front;
 	}
 
 	@Override
