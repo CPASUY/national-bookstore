@@ -4,8 +4,8 @@ public class Queue implements QueueInterface<Client> {
 	private Client front;
 	private Client last;
 	
-	public void setFront(Client front) {
-		this.front = front;
+	public Queue() {
+		
 	}
 	public Client getLast() {
 		return last;
@@ -21,20 +21,26 @@ public class Queue implements QueueInterface<Client> {
 		}
 		else {
 			last.setNextClient(c);
+			c.setPrevClient(last);
 			last = c;
 		}
 	}
 
 	@Override
 	public Client dequeue() {
-		Client eliminated = front;
-		front = front.getNextClient();
+		Client eliminated = last;
+		if(last.getPrevClient()!=null) {
+			last = last.getPrevClient();
+		}
+		else {
+			front=null;
+			last=null;
+		}
 		return eliminated;
 	}
 
 	@Override
-	public Client front() {
-		
+	public Client front() {	
 		return front;
 	}
 
