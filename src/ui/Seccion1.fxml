@@ -2,21 +2,27 @@
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="tableBooks" layoutX="16.0" layoutY="114.0" prefHeight="348.0" prefWidth="648.0">
+      <ImageView fitHeight="622.0" fitWidth="860.0" layoutX="-67.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Downloads/Colorido%20Simple%20Clase%20de%20Ciencias%20Educación%20Presentación%20(4).png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableBooks" layoutX="43.0" layoutY="145.0" prefHeight="277.0" prefWidth="602.0">
         <columns>
           <TableColumn fx:id="idTitle" prefWidth="75.0" text="Title" />
-          <TableColumn fx:id="idISBN" prefWidth="75.0" text="ISBN" />
-            <TableColumn fx:id="idRack" prefWidth="75.0" text="Rack" />
-            <TableColumn fx:id="idChapter" prefWidth="75.0" text="Chapter" />
-            <TableColumn fx:id="idReview" prefWidth="79.0" text="Review" />
-            <TableColumn fx:id="idCritique" prefWidth="96.0" text="Critique" />
-            <TableColumn fx:id="idCost" prefWidth="96.0" text="Cost" />
-            <TableColumn fx:id="idQuantity" prefWidth="76.0" text="Quantity" />
+          <TableColumn fx:id="idISBN" prefWidth="63.0" text="ISBN" />
+            <TableColumn fx:id="idRack" prefWidth="56.0" text="Rack" />
+            <TableColumn fx:id="idChapter" prefWidth="72.0" text="Chapter" />
+            <TableColumn fx:id="idReview" prefWidth="101.0" text="Review" />
+            <TableColumn fx:id="idCritique" prefWidth="91.0" text="Critique" />
+            <TableColumn fx:id="idCost" prefWidth="83.0" text="Cost" />
+            <TableColumn fx:id="idQuantity" prefWidth="60.0" text="Quantity" />
         </columns>
       </TableView>
    </children>

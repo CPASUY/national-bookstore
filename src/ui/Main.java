@@ -18,11 +18,12 @@ public class Main extends Application {
 		NationalLibraryController nlc=new NationalLibraryController(primaryStage);
 		fxmload.setController(nlc);
 		Parent root=fxmload.load();
-		Scene scene = new Scene(root);
+		Scene scene = new Scene(root,676,481);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		primaryStage.setTitle("National Book Store");
 		nlc.initialize();
+		nlc.loadSeccion1();
 	}
 
 }
