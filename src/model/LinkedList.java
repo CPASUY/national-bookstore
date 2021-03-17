@@ -10,7 +10,7 @@ public class LinkedList implements LinkedListInterface<String,Book<String,Intege
 	
 	@Override
 	public boolean add(String isbn, Integer value) {
-		Book<String,Integer> n = new Book<String,Integer>(isbn,value);
+		//Book<String,Integer> n = new Book<String,Integer>(isbn,value);
 		if(firstBook == null) {
 			firstBook = n;
 		}
@@ -49,16 +49,16 @@ public class LinkedList implements LinkedListInterface<String,Book<String,Intege
 			s = firstBook;;
 		}
 		else {
-		while(temporal != null) {
-			if(isbn.equals(temporal.getKey())) {
-				s = temporal;
+			while(temporal != null) {
+				if(isbn.equals(temporal.getKey())) {
+					s = temporal;
+				}
+				temporal = temporal.getNextBook();	
 			}
-			temporal = temporal.getNextBook();	
-		}
 		}
 		return s;
 	}
-	
+
 	public Book<String,Integer> getFirstBook(){
 		return firstBook;
 	}
