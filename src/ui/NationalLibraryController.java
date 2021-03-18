@@ -298,7 +298,7 @@ public class NationalLibraryController {
             heapify(books, i, 0); 
         } 
     } 
-	void heapify(Book books[], int n, int i) { 
+	private void heapify(Book books[], int n, int i) { 
         int largest = i; 
         int l = 2*i + 1; 
         int r = 2*i + 2;  
@@ -315,4 +315,59 @@ public class NationalLibraryController {
             heapify(books, n, largest); 
         } 
     } 
+	
+	public ArrayList<Book> mergeSort(ArrayList<Book> list){
+		ArrayList<Book> left = new ArrayList<Book>();
+		ArrayList<Book> right = new ArrayList<Book>();
+		
+		int medium;
+		
+		if(list.size() == 1) {
+			return list;
+		}else {
+			medium = list.size()/2;
+			for(int i = 0 ; i < medium; i++) {
+				left.add(list.get(i));
+			}
+			
+			for(int i = medium; i<list.size(); i++) {
+				right.add(list.get(i));
+			}
+			left = mergeSort(left);
+			right = mergeSort(right);
+			
+			merge(left, right, list);
+		}
+		
+		return list;
+	}
+	
+	private void merge(ArrayList<Book> left, ArrayList<Book>right, ArrayList<Book>list) {
+		int leftIndex = 0;
+		int rightIndex = 0;
+		int listIndex = 0;
+		
+		while(leftIndex < left.size() && rightIndex < right.size()) {
+			if(left.get(leftIndex).getValue()<right.get(rightIndex).getValue()) {
+				list.set(listIndex, right.get(rightIndex));
+				leftIndex++;
+			}else {
+				list.set(listIndex, right.get(rightIndex));
+				rightIndex++;
+			}
+		}
+		ArrayList<Book> temp;
+		int tempIndex = 0;
+		if(tempIndex>=left.size()) {
+			temp = right;
+			tempIndex = rightIndex;
+		}else {
+			temp = left;
+			tempIndex = leftIndex;
+		}
+		for(int i = tempIndex;i<temp.size();i++) {
+			list.set(listIndex, temp.get(i));
+			listIndex++;
+		}
+	}
 }
