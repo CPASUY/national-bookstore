@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -11,5 +18,39 @@
             <Image url="@../../images/Colorido%20Simple%20Clase%20de%20Ciencias%20Educación%20Presentación%20(4).png" />
          </image>
       </ImageView>
+      <Button fx:id="addBookButton" layoutX="159.0" layoutY="114.0" mnemonicParsing="false" text="Add book" />
+      <TableView fx:id="tableSearchBooks" layoutX="28.0" layoutY="150.0" prefHeight="201.0" prefWidth="151.0">
+        <columns>
+          <TableColumn fx:id="isbnSearchBooks" prefWidth="75.0" text="ISBN" />
+          <TableColumn fx:id="rackSearchBooks" prefWidth="75.0" text="Rack" />
+        </columns>
+      </TableView>
+      <Button fx:id="purchaseButton" layoutX="463.0" layoutY="361.0" mnemonicParsing="false" text="Purchase" />
+      <TableView fx:id="tableMyBasket" layoutX="344.0" layoutY="145.0" prefHeight="201.0" prefWidth="151.0">
+        <columns>
+          <TableColumn fx:id="isbnMyBasket" prefWidth="75.0" text="ISBN" />
+          <TableColumn fx:id="rackMyBasket" prefWidth="75.0" text="Rack" />
+        </columns>
+      </TableView>
+      <Button fx:id="fillMyBasket" layoutX="197.0" layoutY="251.0" mnemonicParsing="false" prefWidth="101.0" text="Fill my basket" />
+      <ChoiceBox fx:id="sortByBox" layoutX="207.0" layoutY="188.0" prefHeight="25.0" prefWidth="81.0" />
+      <Button fx:id="addOtherClientButton" layoutX="344.0" layoutY="361.0" mnemonicParsing="false" text="Add other client" />
+      <TextField fx:id="quantityAdd" layoutX="104.0" layoutY="114.0" prefHeight="25.0" prefWidth="49.0" />
+      <TextField fx:id="isbnAdd" layoutX="28.0" layoutY="114.0" prefHeight="25.0" prefWidth="63.0" />
+      <Label layoutX="41.0" layoutY="88.0" text="ISBN">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="88.0" text="Quantity">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="207.0" layoutY="150.0" text="Sort by:">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
