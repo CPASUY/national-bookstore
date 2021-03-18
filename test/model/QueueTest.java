@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
+import exceptions.NoIdentificationException;
+
 public class QueueTest {
 	private Client c1;
 	private Client c2;
@@ -14,9 +16,14 @@ public class QueueTest {
 	private Queue q;
 	public void setupStage1(){
 		q=new Queue();
-		c1=new Client("1193033579");
-		c2=new Client("1123443666");
-		c3=new Client("1586859403");
+		try {
+			c1=new Client("1193033579");
+			c2=new Client("1123443666");
+			c3=new Client("1586859403");
+		} catch (NoIdentificationException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	public void setupStage2(){
 		q=new Queue();

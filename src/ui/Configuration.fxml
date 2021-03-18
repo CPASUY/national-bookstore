@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="676.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="456.0" fitWidth="714.0" layoutX="-43.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="622.0" fitWidth="860.0" layoutX="-43.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/Colorido%20Simple%20Clase%20de%20Ciencias%20Educación%20Presentación%20(4).png" />
          </image>
@@ -27,7 +27,7 @@
             <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-      <Button fx:id="startButton" layoutX="381.0" layoutY="266.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="79.0" text="Start">
+      <Button layoutX="340.0" layoutY="258.0" mnemonicParsing="false" onAction="#startSection1" prefHeight="57.0" prefWidth="161.0" text="Start">
          <font>
             <Font size="18.0" />
          </font>

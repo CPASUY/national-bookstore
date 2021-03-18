@@ -23,7 +23,7 @@ public class Main extends Application {
 		primaryStage.show();
 		primaryStage.setTitle("National Book Store");
 		nlc.initialize();
-		nlc.loadSeccion1();
+		nlc.loadConfiguration();
 	}
 
 }

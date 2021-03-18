@@ -2,25 +2,30 @@ package ui;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import exceptions.NoIdentificationException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.Book;
+import model.Client;
 import model.HashTable;
 
 public class NationalLibraryController {
+	
+	private Client client;
 	
 	private Stage stage;
 	@FXML
@@ -52,8 +57,6 @@ public class NationalLibraryController {
     @FXML
     private TableColumn<Book,Integer> idQuantity;
     
-    @FXML
-    private Button goNextSection;
     
     @FXML
     private TextField identificationTextField;
@@ -64,62 +67,49 @@ public class NationalLibraryController {
     @FXML
     private TextField quantityAdd;
     
-    @FXML
-    private Button addBookButton;
     
     @FXML
-    private TableView<Book<String,Integer>> tableSearchBooks;
+    private TableView<Book> tableSearchBooks;
     
     @FXML
-    private TableColumn<Book<String,Integer>,Integer> isbnSearchBooks;
+    private TableColumn<Book,String> isbnSearchBooks;
     
     @FXML
-    private TableColumn<Book<String,Integer>,Integer> rackSearchBooks;
+    private TableColumn<Book,Integer> rackSearchBooks;
     
     @FXML
     private ChoiceBox<String> sortByBox;
     
     @FXML
-    private TableView<Book<String,Integer>> tableMyBasket;
+    private TableView<Book> tableMyBasket;
     
     @FXML
-    private TableColumn<Book<String,Integer>,Integer> isbnMyBasket;
+    private TableColumn<Book,String> isbnMyBasket;
     
     @FXML
-    private TableColumn<Book<String,Integer>,Integer> rackMyBasket;
+    private TableColumn<Book,Integer> rackMyBasket;
+    
     
     @FXML
-    private Button fillMyBasket;
+    private TableView<Client> tableQueue;
     
     @FXML
-    private Button addOtherClientButton;
+    private TableColumn<Client,String> identificationQueue;
     
     @FXML
-    private Button purchaseButton;
+    private TableColumn<Client,Integer> quantityBooksQueue;
     
     @FXML
-    private TableView<Book<String,Integer>> tableQueue;
+    private TableView<Client> tableExit;
     
     @FXML
-    private TableColumn<Book<String,Integer>,Integer> identificationQueue;
+    private TableColumn<Client,String> identificationExit;
     
     @FXML
-    private TableColumn<Book<String,Integer>,Integer> quantityBooksQueue;
+    private TableColumn<Client,String> isbnsBooksExit;
     
     @FXML
-    private TableView<Book<String,Integer>> tableExit;
-    
-    @FXML
-    private TableColumn<Book<String,Integer>,Integer> identificationExit;
-    
-    @FXML
-    private TableColumn<Book<String,Integer>,Integer> isbnsBooksExit;
-    
-    @FXML
-    private TableColumn<Book<String,Integer>,Integer> priceExit;
-    
-    @FXML
-    private Button finishAndExitButton;
+    private TableColumn<Client,Integer> priceExit;
     
     @FXML
     private TextField numberOfShelvings;
@@ -127,16 +117,18 @@ public class NationalLibraryController {
     @FXML
     private TextField numberCashRegister;
     
-    @FXML
-    private Button startButton;
+    
+   
     
     
     
     
     
-	public NationalLibraryController(Stage s) {
+    
+	public NationalLibraryController(Stage s) throws NoIdentificationException {
 		stage=s;
 	}
+	
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			//Book<String,Integer> b = new Book<String,Integer>("SDSDSDS",2);
@@ -148,30 +140,60 @@ public class NationalLibraryController {
 		});
 
 	}
-	public void loadSeccion1() throws IOException {
+	
+	public void loadConfiguration(){
+		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Configuration.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadSection1(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion1.fxml"));
 		fxmload.setController(this);
 		Parent root;
-		root = fxmload.load();
-		basePane.getChildren().clear();
-		basePane.setCenter(root);
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	public void loadSeccion2() throws IOException{
+	public void loadSection2(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion2.fxml"));
 		fxmload.setController(this);
 		Parent root;
-		root = fxmload.load();
-		basePane.getChildren().clear();
-		basePane.setCenter(root);
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		sortByBox.getItems().addAll("BubbleSort","HeapSort","MergeSort");
+		sortByBox.setValue("BubbleSort");
 	}
-	public void loadSeccion3() throws IOException{
+	
+	public void loadSection3(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion3.fxml"));
 		fxmload.setController(this);
 		Parent root;
-		root = fxmload.load();
-		basePane.getChildren().clear();
-		basePane.setCenter(root);
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+	
 	public void loadBooksList(HashTable h) {
 	    	basePane.setOnKeyPressed(null);
 	    	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion1.fxml"));
@@ -198,6 +220,72 @@ public class NationalLibraryController {
 			idCost.setCellValueFactory(new PropertyValueFactory<Book,Integer>("Review"));
 			idQuantity.setCellValueFactory(new PropertyValueFactory<Book, Integer>("Critique"));
 	}
+	
+	
+	@FXML
+	void startSection1(){
+		loadSection1();
+	}
+	
+	@FXML
+	void goToSection2(){
+			try {
+				client = new Client(identificationTextField.getText());
+				loadSection2();
+			} catch (NoIdentificationException e) {
+				Alert a = new Alert(AlertType.WARNING);
+				a.setContentText("You need put a identification");
+				a.show();
+			}
+	}
+	@FXML
+	void addBook() {
+		String value = sortByBox.getValue();
+		if(value.equals("BubbleSort")) {
+			bubbleSort(client.getSearchBooks());
+		}
+		else if(value.equals("HeapSort")) {
+			
+		}
+		else {
+			
+		}
+		
+	}
+	
+	@FXML
+	void fillMyBasket() {
+		
+	}
+	
+	@FXML
+	void addOtherClient(){
+		loadSection1();
+	}
+	
+	@FXML
+	void purchase(){
+		loadSection3();
+	}
+	
+	@FXML
+	void finishAndExit() {
+		System.exit(0);
+	}
+	
+	public void bubbleSort(ArrayList<Book> books) {
+		Book temp = null;
+		for(int i = books.size()-1;i>0;i--) {
+			for(int j = 0;j<i; j++) {
+				if(books.get(j).getValue()> books.get(j+1).getValue()) {
+					temp = books.get(j);
+					books.set(j, books.get(j+1));
+					books.set(j+1, temp);
+				}
+			}
+		}
+	}
+	
 	public void heapSort(Book books[]){ 
         int n = books.length; 
         for (int i = n / 2 - 1; i >= 0; i--) { 

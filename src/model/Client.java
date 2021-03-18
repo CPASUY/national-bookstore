@@ -1,11 +1,18 @@
 package model;
 
+import java.util.ArrayList;
+
+import exceptions.NoIdentificationException;
+
 public class Client {
 	
 	String identification;
+	int quantityOfBooks;
 	private Stack<String,Integer> buyBooks;
+	private ArrayList<Book> searchBooks;
 	private Client nextClient;
 	private Client prevClient;
+	
 	
 	public Client getPrevClient() {
 		return prevClient;
@@ -15,9 +22,16 @@ public class Client {
 		this.prevClient = prevClient;
 	}
 
-	public Client (String identification) {
-		this.identification = identification;
-		buyBooks = new Stack<String,Integer>();
+	public Client (String identification) throws NoIdentificationException {
+		if(identification.isEmpty() == false) {
+			this.identification = identification;
+			buyBooks = new Stack<String,Integer>();
+			searchBooks = new ArrayList<Book>();
+			quantityOfBooks = 0;
+		}
+		else {
+			throw new NoIdentificationException();
+		}
 	}
 
 	public Client getNextClient() {
@@ -34,5 +48,9 @@ public class Client {
 	
 	public Stack<String,Integer> getBuyBooks() {
 		return buyBooks;
+	}
+	
+	public ArrayList<Book> getSearchBooks(){
+		return searchBooks;
 	}
 }
