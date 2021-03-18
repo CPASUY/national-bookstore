@@ -1,20 +1,19 @@
 package model;
 
-public class Book<K extends Comparable<K>, V> {
+public class Book{
 
-	private K key;
-	private V value;
+	private String key;
+	private Integer value;
 	private String title;
 	private String chapter;
 	private String review;
 	private int cost;
 	private int quantity;
 	private String critique;
-	private Book<K,V> nextBook;
-	private Book<K,V> prevBook;
+	private Book nextBook;
+	private Book prevBook;
 
-	
-	public Book(K key, V value,String chapter,String review,String critique,String title,int cost,int quantity) {
+	public Book(String key, Integer value,String chapter,String review,String critique,String title,int cost,int quantity) {
 		this.key = key;
 		this.value = value;
 		this.title=title;
@@ -60,28 +59,28 @@ public class Book<K extends Comparable<K>, V> {
 	public void setCritique(String critique) {
 		this.critique = critique;
 	}
-	public void setKey(K key) {
+	public void setKey(String key) {
 		this.key = key;
 	}
-	public void setValue(V value) {
+	public void setValue(Integer value) {
 		this.value = value;
 	}
-	public K getKey() {
+	public String  getKey() {
 		return key;
 	}
-	public V getValue() {
+	public Integer getValue() {
 		return value;
 	}
-	public Book<K,V> getNextBook() {
+	public Book getNextBook() {
 		return nextBook;
 	}
-	public void setNextBook(Book<K,V> nextBook) {
+	public void setNextBook(Book nextBook) {
 		this.nextBook = nextBook;
 	}
-	public Book<K,V> getPrevBook() {
+	public Book getPrevBook() {
 		return prevBook;
 	}
-	public void setPrevBook(Book<K,V> prevBook) {
+	public void setPrevBook(Book prevBook) {
 		this.prevBook = prevBook;
 	}
 }

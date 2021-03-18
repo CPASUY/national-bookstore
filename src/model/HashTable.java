@@ -3,50 +3,32 @@ package model;
 
 import java.util.ArrayList;
 
-public class HashTable<K extends Comparable<K>, V> implements HashTableInterface<K, V> {
-
-	private ArrayList<Book<K, V>> books;
+public class HashTable implements HashTableInterface<String,Integer> {
+	private ArrayList <Book> list;
+	private Book[] books;
 	private int size;
 
 	public HashTable(int size) {
-		books=new ArrayList<Book<K, V>>(size);
+		books=new Book[size];
 		this.size = size;
 	}
-	@Override
-	public int keyToInteger(K key) {
-		int integer = 0;
-		if (key instanceof Character) {
-			integer = (Character) key - 97;
-		} else if (key instanceof Integer) {
-			integer = (Integer) key;
-		} else if (key instanceof Double) {
-			integer = (int) ((Double) key *size);
-		} else {
-			String s = key.toString();
-			for (int i = 0; i < s.length(); i++) {
-				integer += s.charAt(i);
-			}
-		}
-		return integer;
-	}
 
 	@Override
-	public int hashFuntion(K k) {
+	public int hashFuntion(Integer k) {
 		Integer key=0;
-		int n=keyToInteger(k);
-		key=n%size;
+		key=k%size;
 		return key;
 	}
-
 	@Override
-	public void put(K key, V value,String chapter,String review,String critique,String title,int cost,int quantity) {
-		int k=hashFuntion(key);
-		Book<K, V> newN=new Book<K, V>(key,value,chapter,review,critique,title,cost,quantity);
-		if(books.get(k)==null) {
-			books.set(k,newN);
+	public void put(String key, Integer value, String chapter, String review, String critique, String title, int cost,int quantity) {
+		int num = Integer.parseInt(key);
+		int k=hashFuntion(num);
+		Book newN=new Book(key,value,chapter,review,critique,title,cost,quantity);
+		if(books[k]==null) {
+			books[k]=newN;
 		}
 		else {
-			Book<K, V>  current=books.get(k);
+			Book current=books[k];
 			while (current.getNextBook()!=null) {
 				current=current.getNextBook();
 			}
@@ -54,10 +36,12 @@ public class HashTable<K extends Comparable<K>, V> implements HashTableInterface
 			newN.setPrevBook(current);
 		}
 	}
+
 	@Override
-	public Book<K, V> search(K key) {
-		int k=hashFuntion(key);
-		Book<K, V> current=books.get(k);
+	public Book search(String key) {
+		int num = Integer.parseInt(key);
+		int k=hashFuntion(num);
+		Book current=books[k];
 		if(current!=null) {
 			while (current.getKey()!=key && current.getNextBook()!=null) {
 				current=current.getNextBook();
@@ -70,18 +54,19 @@ public class HashTable<K extends Comparable<K>, V> implements HashTableInterface
 		return null;
 	}
 	@Override
-	public boolean remove(K key) {
-		int k=hashFuntion(key);
-		Book<K,V> s = search(key);
+	public boolean remove(String key) {
+		int num = Integer.parseInt(key);
+		int k=hashFuntion(num);
+		Book  s = search(key);
 		boolean find=false;
 		if(s!=null) {
-			if(s == books.get(k) && books.get(k).getNextBook()!=null) {
-				books.set(k,books.get(k).getNextBook());
-				books.get(k).setPrevBook(null);
+			if(s == books[k] && books[k].getNextBook()!=null) {
+				books[k]=books[k].getNextBook();
+				books[k].setPrevBook(null);
 				
 			}
-			else if(s == books.get(k) && books.get(k).getNextBook()==null) {
-				books.set(k,null);
+			else if(s == books[k] && books[k].getNextBook()==null) {
+				books[k]=null;
 			}
 			else if(s.getNextBook()==null && s.getPrevBook()!=null) {
 				s.getPrevBook().setNextBook(null);
@@ -93,5 +78,17 @@ public class HashTable<K extends Comparable<K>, V> implements HashTableInterface
 		}
 		return find;
 	}
-
+	public ArrayList<Book> booksList() {
+		for(int s=0;s<size;s++) {
+			if(books[s]!=null) { 
+				Book current=books[s];
+				while(current.getNextBook()!=null) {
+					list.add(current);
+					current=current.getNextBook();
+				}
+				list.add(current);
+			}
+		}
+		return list;
+	}
 }

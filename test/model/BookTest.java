@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class BookTest {
-	private Book<String,Integer> book;
+	private Book book;
 	private String key;
 	private Integer value;
 	private String title;
@@ -24,7 +24,7 @@ class BookTest {
 		critique="5 stars";
 		cost=40000;
 		quantity=3;
-		book=new Book<String,Integer>(key,value, chapter,review,critique,title,cost,quantity);
+		book=new Book(key,value, chapter,review,critique,title,cost,quantity);
 	}
 	@Test
 	void testBook() {
