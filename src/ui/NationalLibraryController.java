@@ -8,8 +8,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -48,6 +51,88 @@ public class NationalLibraryController {
 
     @FXML
     private TableColumn<Book,Integer> idQuantity;
+    
+    @FXML
+    private Button goNextSection;
+    
+    @FXML
+    private TextField identificationTextField;
+    
+    @FXML
+    private TextField isbnAdd;
+    
+    @FXML
+    private TextField quantityAdd;
+    
+    @FXML
+    private Button addBookButton;
+    
+    @FXML
+    private TableView<Book<String,Integer>> tableSearchBooks;
+    
+    @FXML
+    private TableColumn<Book<String,Integer>,Integer> isbnSearchBooks;
+    
+    @FXML
+    private TableColumn<Book<String,Integer>,Integer> rackSearchBooks;
+    
+    @FXML
+    private ChoiceBox<String> sortByBox;
+    
+    @FXML
+    private TableView<Book<String,Integer>> tableMyBasket;
+    
+    @FXML
+    private TableColumn<Book<String,Integer>,Integer> isbnMyBasket;
+    
+    @FXML
+    private TableColumn<Book<String,Integer>,Integer> rackMyBasket;
+    
+    @FXML
+    private Button fillMyBasket;
+    
+    @FXML
+    private Button addOtherClientButton;
+    
+    @FXML
+    private Button purchaseButton;
+    
+    @FXML
+    private TableView<Book<String,Integer>> tableQueue;
+    
+    @FXML
+    private TableColumn<Book<String,Integer>,Integer> identificationQueue;
+    
+    @FXML
+    private TableColumn<Book<String,Integer>,Integer> quantityBooksQueue;
+    
+    @FXML
+    private TableView<Book<String,Integer>> tableExit;
+    
+    @FXML
+    private TableColumn<Book<String,Integer>,Integer> identificationExit;
+    
+    @FXML
+    private TableColumn<Book<String,Integer>,Integer> isbnsBooksExit;
+    
+    @FXML
+    private TableColumn<Book<String,Integer>,Integer> priceExit;
+    
+    @FXML
+    private Button finishAndExitButton;
+    
+    @FXML
+    private TextField numberOfShelvings;
+    
+    @FXML
+    private TextField numberCashRegister;
+    
+    @FXML
+    private Button startButton;
+    
+    
+    
+    
     
 	public NationalLibraryController(Stage s) {
 		stage=s;
