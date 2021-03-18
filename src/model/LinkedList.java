@@ -9,8 +9,8 @@ public class LinkedList implements LinkedListInterface<String,Book<String,Intege
 	}
 	
 	@Override
-	public boolean add(String isbn, Integer value) {
-		Book<String,Integer> n = new Book<String,Integer>(isbn,value);
+	public boolean add(String isbn, Integer value,String chapter,String review,String critique,String title,int cost,int quantity) {
+		Book<String,Integer> n = new Book<String,Integer>(isbn,value,chapter,review,critique,title,cost,quantity);
 		if(firstBook == null) {
 			firstBook = n;
 		}
