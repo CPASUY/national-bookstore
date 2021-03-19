@@ -120,13 +120,6 @@ public class NationalLibraryController {
     private HashTable books;
     
     
-   
-    
-    
-    
-    
-    
-    
 	public NationalLibraryController(Stage s) throws NoIdentificationException {
 		stage=s;
 		books = new HashTable();
@@ -287,7 +280,25 @@ public class NationalLibraryController {
 		rackMyBasket.setCellValueFactory(new PropertyValueFactory<Book, Integer>("value"));
 	}
 	
-	
+	public void loadTableQue() {
+		basePane.setOnKeyPressed(null);
+    	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion2.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		tableMyBasket.getItems().clear();
+		Book[] list=client.getBuyBooks();
+		ObservableList<Book>books= FXCollections.observableArrayList(list);
+		tableMyBasket.setItems(books);
+		isbnMyBasket.setCellValueFactory(new PropertyValueFactory<Book, String>("key"));
+		rackMyBasket.setCellValueFactory(new PropertyValueFactory<Book, Integer>("value"));
+	}
 	@FXML
 	void startSection1(){
 		loadSection1();
