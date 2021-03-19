@@ -1,6 +1,7 @@
 package ui;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 import exceptions.NoIdentificationException;
 import javafx.collections.FXCollections;
@@ -130,15 +131,12 @@ public class NationalLibraryController {
 	public NationalLibraryController(Stage s) throws NoIdentificationException {
 		stage=s;
 		books = new HashTable();
-		books.put("1234", 1 , "20", "SISA MANO" , "LOCA", "SI", 12933, 10);
-		books.put("1235", 2 , "20", "SISA MANO" , "LOCA", "SI", 12933, 10);
-		books.put("1236", 3 , "20", "SISA MANO" , "LOCA", "SI", 12933, 10);
-		books.put("1237", 4 , "20", "SISA MANO" , "LOCA", "SI", 12933, 10);
+		stage.setResizable(false);
 	}
 	
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			//Book<String,Integer> b = new Book<String,Integer>("SDSDSDS",2);
+
 			
 			@Override
 			public void handle(WindowEvent event) {
@@ -172,6 +170,8 @@ public class NationalLibraryController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		loadBooksList();
+		
 	}
 	public void loadSection2(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion2.fxml"));
@@ -220,14 +220,14 @@ public class NationalLibraryController {
 			ObservableList<Book>books= FXCollections.observableArrayList(list);
 			tableBooks.setItems(books);
 			
-			idTitle.setCellValueFactory(new PropertyValueFactory<Book, String>("Title"));
-			idISBN.setCellValueFactory(new PropertyValueFactory<Book, String>("ISBN"));
-			idRack.setCellValueFactory(new PropertyValueFactory<Book, Integer>("Rack"));
-			idChapter.setCellValueFactory(new PropertyValueFactory<Book,String>("Chapter"));
-			idReview.setCellValueFactory(new PropertyValueFactory<Book, String>("Review"));
-			idCritique.setCellValueFactory(new PropertyValueFactory<Book, String>("Critique"));
-			idCost.setCellValueFactory(new PropertyValueFactory<Book,Integer>("Review"));
-			idQuantity.setCellValueFactory(new PropertyValueFactory<Book, Integer>("Critique"));
+			idTitle.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
+			idISBN.setCellValueFactory(new PropertyValueFactory<Book, String>("key"));
+			idRack.setCellValueFactory(new PropertyValueFactory<Book, Integer>("value"));
+			idChapter.setCellValueFactory(new PropertyValueFactory<Book,String>("chapter"));
+			idReview.setCellValueFactory(new PropertyValueFactory<Book, String>("review"));
+			idCritique.setCellValueFactory(new PropertyValueFactory<Book, String>("critique"));
+			idCost.setCellValueFactory(new PropertyValueFactory<Book,Integer>("cost"));
+			idQuantity.setCellValueFactory(new PropertyValueFactory<Book, Integer>("quantity"));
 	}
 	
 	public void loadTableSearchBooks(ArrayList<Book> h) {
@@ -290,7 +290,25 @@ public class NationalLibraryController {
 	
 	@FXML
 	void startSection1(){
+		if(Integer.parseInt(numberOfShelvings.getText()) > 0 && Integer.parseInt(numberCashRegister.getText()) > 0 ) {
+		books.put("1229", getRandomShelving() , "IV", "Good story" , "8/10", "Hitman", 129330, 10);
+		
+		books.put("1231", getRandomShelving() , "V", "Good characters" , "9/10", "HarryPotter", 130000, 10);
+		books.put("1232", getRandomShelving() , "I", "Traumatic" , "7/10", "The King", 100000, 10);
+		books.put("1233", getRandomShelving() , "II", "Violence" , "6/10", "The butterfly", 150000, 10);
+		books.put("1234", getRandomShelving() , "III", "Good story" , "5/10", "The Jungle", 80000, 10);
+		books.put("1235", getRandomShelving() , "X", "Mystery" , "2/10", "ToyStory", 600000, 10);
+		books.put("1236", getRandomShelving() , "VI", "Good story" , "3/10", "Batman", 70000, 10);
+		books.put("1237", getRandomShelving() , "VII", "Happy" , "9/10", "Gentleman", 150000, 10);
+		books.put("1238", getRandomShelving() , "IX", "Mystery" , "10/10", "Agent007", 200000, 10);
+		books.put("1239", getRandomShelving() , "V", "Amazing" , "8/10", "GoodPlace", 160000, 10);
 		loadSection1();
+		}
+		else {
+			Alert a = new Alert(AlertType.WARNING);
+			a.setContentText("You put any invalid field value");
+			a.show();
+		}
 	}
 	
 	@FXML
@@ -324,7 +342,7 @@ public class NationalLibraryController {
 		}
 		
 		else if(value.equals("HeapSort")) {
-			//heapSort(client.getSearchBooks());
+			heapSort(client.getSearchBooks());
 		}
 		else if (value.equals("MergeSort")){
 			mergeSort(client.getSearchBooks());
@@ -351,6 +369,11 @@ public class NationalLibraryController {
 	@FXML
 	void finishAndExit() {
 		System.exit(0);
+	}
+	
+	int getRandomShelving() {
+		int randomNum = ThreadLocalRandom.current().nextInt(1,Integer.parseInt(numberOfShelvings.getText()) + 1);
+		return randomNum;
 	}
 	
 	public void bubbleSort(ArrayList<Book> books) {
@@ -428,8 +451,8 @@ public class NationalLibraryController {
 		int listIndex = 0;
 		
 		while(leftIndex < left.size() && rightIndex < right.size()) {
-			if(left.get(leftIndex).getValue()<right.get(rightIndex).getValue()) {
-				list.set(listIndex, right.get(rightIndex));
+			if(left.get(leftIndex).getValue()-right.get(rightIndex).getValue()<0) {
+				list.set(listIndex, left.get(leftIndex));
 				leftIndex++;
 			}else {
 				list.set(listIndex, right.get(rightIndex));
