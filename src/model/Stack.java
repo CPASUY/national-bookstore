@@ -12,15 +12,21 @@ public class Stack<K extends Comparable<K>,V> implements StackInterface<Book> {
 	@Override
 	public Book pop() {
 		Book n = top;
+		top.getPrevBook().setNextBook(null);
 		top = top.getPrevBook();
 		return n;
 	}
 
 	@Override
 	public void push(Book s) {
-		top.setNextBook(s);
-		s.setPrevBook(top);
-		top = s;
+		if(top==null) {
+			top=s;
+		}
+		else {
+			top.setNextBook(s);
+			s.setPrevBook(top);
+			top = s;
+		}
 	}
 
 	@Override
