@@ -8,9 +8,9 @@ public class HashTable implements HashTableInterface<String,Integer> {
 	private Book[] books;
 	private int size;
 
-	public HashTable(int size) {
-		books=new Book[size];
-		this.size = size;
+	public HashTable() {
+		books=new Book[5];
+		size = 5;
 	}
 
 	@Override
@@ -46,13 +46,13 @@ public class HashTable implements HashTableInterface<String,Integer> {
 			while (current.getKey()!=key && current.getNextBook()!=null) {
 				current=current.getNextBook();
 			}
-			if(current.getKey()!=key) {
-				return null;
+			if(current.getKey().equals(key)) {
+				return current;
 			}
-			return current;
 		}
 		return null;
 	}
+	
 	@Override
 	public boolean remove(String key) {
 		int num = Integer.parseInt(key);

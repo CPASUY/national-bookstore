@@ -117,6 +117,8 @@ public class NationalLibraryController {
     @FXML
     private TextField numberCashRegister;
     
+    private HashTable books;
+    
     
    
     
@@ -127,6 +129,11 @@ public class NationalLibraryController {
     
 	public NationalLibraryController(Stage s) throws NoIdentificationException {
 		stage=s;
+		books = new HashTable();
+		books.put("1234", 1 , "20", "SISA MANO" , "LOCA", "SI", 12933, 10);
+		books.put("1235", 2 , "20", "SISA MANO" , "LOCA", "SI", 12933, 10);
+		books.put("1236", 3 , "20", "SISA MANO" , "LOCA", "SI", 12933, 10);
+		books.put("1237", 4 , "20", "SISA MANO" , "LOCA", "SI", 12933, 10);
 	}
 	
 	public void initialize() {
@@ -177,6 +184,8 @@ public class NationalLibraryController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		loadTableSearchBooks(client.getSearchBooks());
+		loadTableMyBasket(client.getBuyBooks());
 		sortByBox.getItems().addAll("BubbleSort","HeapSort","MergeSort");
 		sortByBox.setValue("BubbleSort");
 	}
@@ -194,7 +203,7 @@ public class NationalLibraryController {
 		}
 	}
 	
-	public void loadBooksList(HashTable h) {
+	public void loadBooksList() {
 	    	basePane.setOnKeyPressed(null);
 	    	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion1.fxml"));
 			fxmload.setController(this);
@@ -207,7 +216,7 @@ public class NationalLibraryController {
 				e.printStackTrace();
 			}
 			tableBooks.getItems().clear();
-			ArrayList<Book> list=h.booksList();
+			ArrayList<Book> list=books.booksList();
 			ObservableList<Book>books= FXCollections.observableArrayList(list);
 			tableBooks.setItems(books);
 			
@@ -219,6 +228,63 @@ public class NationalLibraryController {
 			idCritique.setCellValueFactory(new PropertyValueFactory<Book, String>("Critique"));
 			idCost.setCellValueFactory(new PropertyValueFactory<Book,Integer>("Review"));
 			idQuantity.setCellValueFactory(new PropertyValueFactory<Book, Integer>("Critique"));
+	}
+	
+	public void loadTableSearchBooks(ArrayList<Book> h) {
+    	basePane.setOnKeyPressed(null);
+    	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion2.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		tableSearchBooks.getItems().clear();
+		ArrayList<Book> list=client.getSearchBooks();
+		ObservableList<Book>books= FXCollections.observableArrayList(list);
+		tableSearchBooks.setItems(books);
+		isbnSearchBooks.setCellValueFactory(new PropertyValueFactory<Book, String>("key"));
+		rackSearchBooks.setCellValueFactory(new PropertyValueFactory<Book, Integer>("value"));
+}
+	public void refreshTableSearchBook() {
+		tableSearchBooks.getItems().clear();
+		ArrayList<Book> list=client.getSearchBooks();
+		ObservableList<Book>books= FXCollections.observableArrayList(list);
+		tableSearchBooks.setItems(books);
+		isbnSearchBooks.setCellValueFactory(new PropertyValueFactory<Book, String>("key"));
+		rackSearchBooks.setCellValueFactory(new PropertyValueFactory<Book, Integer>("value"));
+	}
+	
+	public void loadTableMyBasket(Book[] h) {
+    	basePane.setOnKeyPressed(null);
+    	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion2.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		tableMyBasket.getItems().clear();
+		Book[] list=client.getBuyBooks();
+		ObservableList<Book>books= FXCollections.observableArrayList(list);
+		tableMyBasket.setItems(books);
+		isbnMyBasket.setCellValueFactory(new PropertyValueFactory<Book, String>("key"));
+		rackMyBasket.setCellValueFactory(new PropertyValueFactory<Book, Integer>("value"));
+}
+	
+	public void refreshTableMyBasket() {
+		tableMyBasket.getItems().clear();
+		Book[] list=client.getBuyBooks();
+		ObservableList<Book>books= FXCollections.observableArrayList(list);
+		tableMyBasket.setItems(books);
+		isbnMyBasket.setCellValueFactory(new PropertyValueFactory<Book, String>("key"));
+		rackMyBasket.setCellValueFactory(new PropertyValueFactory<Book, Integer>("value"));
 	}
 	
 	
@@ -241,21 +307,35 @@ public class NationalLibraryController {
 	@FXML
 	void addBook() {
 		String value = sortByBox.getValue();
+		String code = isbnAdd.getText();
+		int quantity = Integer.parseInt(quantityAdd.getText());
+		
+		if(books.search(code) != null) {
+			for(int i =0;i<quantity;i++) {
+				client.getSearchBooks().add(books.search(code));
+			}
+		}else {
+			Alert a = new Alert(AlertType.WARNING);
+			a.setContentText("the ISBN was not found");
+			a.show();
+		}
 		if(value.equals("BubbleSort")) {
 			bubbleSort(client.getSearchBooks());
 		}
-		else if(value.equals("HeapSort")) {
-			
-		}
-		else {
-			
-		}
 		
+		else if(value.equals("HeapSort")) {
+			//heapSort(client.getSearchBooks());
+		}
+		else if (value.equals("MergeSort")){
+			mergeSort(client.getSearchBooks());
+		}
+		refreshTableSearchBook();
 	}
 	
 	@FXML
 	void fillMyBasket() {
-		
+		client.fillBuyBooks();
+		refreshTableMyBasket();
 	}
 	
 	@FXML

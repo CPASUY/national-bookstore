@@ -8,7 +8,8 @@ public class Client {
 	
 	String identification;
 	int quantityOfBooks;
-	private Stack<String,Integer> buyBooks;
+	private Stack stackBooks;
+	private Book[] buyBooks;
 	private ArrayList<Book> searchBooks;
 	private Client nextClient;
 	private Client prevClient;
@@ -25,8 +26,9 @@ public class Client {
 	public Client (String identification) throws NoIdentificationException {
 		if(identification.isEmpty() == false) {
 			this.identification = identification;
-			buyBooks = new Stack<String,Integer>();
+			stackBooks = new Stack();
 			searchBooks = new ArrayList<Book>();
+			buyBooks = new Book[5];
 			quantityOfBooks = 0;
 		}
 		else {
@@ -46,11 +48,29 @@ public class Client {
 		return identification;
 	}
 	
-	public Stack<String,Integer> getBuyBooks() {
-		return buyBooks;
+	public Stack getStackBooks() {
+		return stackBooks;
 	}
 	
 	public ArrayList<Book> getSearchBooks(){
 		return searchBooks;
+	}
+	
+	public void fillBuyBooks() {
+		
+		for(int i=0; i<searchBooks.size();i++) {
+			stackBooks.push(searchBooks.get(i));
+		}
+		
+		buyBooks = new Book[stackBooks.getSize()];
+		
+		for(int i=0;i<buyBooks.length;i++) {
+			buyBooks[i] = stackBooks.pop();
+		}
+		quantityOfBooks = buyBooks.length;
+	}
+	
+	public Book[] getBuyBooks() {
+		return buyBooks;
 	}
 }

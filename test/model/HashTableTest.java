@@ -41,7 +41,7 @@ class HashTableTest {
 		cost2=26000;
 		quantity2=2;
 		book2=new Book(key2,value2, chapter2,review2,critique2,title2,cost2,quantity2);
-		h=new HashTable(s);
+		h=new HashTable();
 	}
 	@Test
 	void test() {
