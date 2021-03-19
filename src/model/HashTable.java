@@ -9,8 +9,9 @@ public class HashTable implements HashTableInterface<String,Integer> {
 	private int size;
 
 	public HashTable() {
-		books=new Book[5];
-		size = 5;
+		books=new Book[11];
+		size = 11;
+		list = new ArrayList<Book>();
 	}
 	public Book[] getBooks() {
 		return books;
@@ -88,14 +89,9 @@ public class HashTable implements HashTableInterface<String,Integer> {
 		return find;
 	}
 	public ArrayList<Book> booksList() {
-		for(int s=0;s<size;s++) {
+		for(int s=0;s<books.length;s++) {
 			if(books[s]!=null) { 
-				Book current=books[s];
-				while(current.getNextBook()!=null) {
-					list.add(current);
-					current=current.getNextBook();
-				}
-				list.add(current);
+					list.add(books[s]);
 			}
 		}
 		return list;
