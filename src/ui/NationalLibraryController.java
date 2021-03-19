@@ -366,32 +366,32 @@ public class NationalLibraryController {
 		}
 	}
 	
-	public void heapSort(Book books[]){ 
-        int n = books.length; 
+	public void heapSort(ArrayList<Book> books){ 
+        int n = books.size(); 
         for (int i = n / 2 - 1; i >= 0; i--) { 
             heapify(books, n, i); 
     	}
         for (int i=n-1; i>=0; i--){ 
-            Book temp = books[0]; 
-            books[0] = books[i]; 
-            books[i] = temp; 
+            Book temp = books.get(0); 
+            books.set(0,books.get(i));
+            books.set(i, temp);
             heapify(books, i, 0); 
         } 
     } 
-	private void heapify(Book books[], int n, int i) { 
+	private void heapify(ArrayList<Book> books, int n, int i) { 
         int largest = i; 
         int l = 2*i + 1; 
         int r = 2*i + 2;  
-        if (l < n && books[l].getValue() > books[largest].getValue()) {
+        if (l < n && books.get(l).getValue() > books.get(largest).getValue()) {
             largest = l; 
         }
-        if (r < n && books[r].getValue() > books[largest].getValue()) {
+        if (r < n && books.get(r).getValue() > books.get(largest).getValue()) {
             largest = r; 
         }
         if (largest != i){ 
-            Book swap = books[i]; 
-            books[i] = books[largest]; 
-            books[largest] = swap; 
+            Book swap = books.get(i); 
+            books.set(i, books.get(largest));
+            books.set(largest, swap);
             heapify(books, n, largest); 
         } 
     } 

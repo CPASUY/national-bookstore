@@ -12,7 +12,13 @@ public class HashTable implements HashTableInterface<String,Integer> {
 		books=new Book[5];
 		size = 5;
 	}
+	public Book[] getBooks() {
+		return books;
+	}
 
+	public int getSize() {
+		return size;
+	}
 	@Override
 	public int hashFuntion(Integer k) {
 		Integer key=0;
@@ -63,17 +69,20 @@ public class HashTable implements HashTableInterface<String,Integer> {
 			if(s == books[k] && books[k].getNextBook()!=null) {
 				books[k]=books[k].getNextBook();
 				books[k].setPrevBook(null);
-				
+				find=true;
 			}
 			else if(s == books[k] && books[k].getNextBook()==null) {
 				books[k]=null;
+				find=true;
 			}
 			else if(s.getNextBook()==null && s.getPrevBook()!=null) {
 				s.getPrevBook().setNextBook(null);
+				find=true;
 			}
 			else {
 				s.getPrevBook().setNextBook(s.getNextBook());;
 				s.getNextBook().setPrevBook(s.getPrevBook());
+				find=true;
 			}
 		}
 		return find;
