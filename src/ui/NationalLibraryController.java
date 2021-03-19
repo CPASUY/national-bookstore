@@ -462,7 +462,7 @@ public class NationalLibraryController {
 		int listIndex = 0;
 		
 		while(leftIndex < left.size() && rightIndex < right.size()) {
-			if(left.get(leftIndex).getValue()-right.get(rightIndex).getValue()<0) {
+			if((left.get(leftIndex).getValue()-right.get(rightIndex).getValue())<0) {
 				list.set(listIndex, left.get(leftIndex));
 				leftIndex++;
 			}else {
