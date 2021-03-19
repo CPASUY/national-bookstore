@@ -298,11 +298,7 @@ public class NationalLibraryController {
             heapify(books, i, 0); 
         } 
     } 
-<<<<<<< HEAD
-	void heapify(ArrayList<Book> books, int n, int i) { 
-=======
-	private void heapify(Book books[], int n, int i) { 
->>>>>>> 5864dc0fa39bc7490f901728c7375db3e9887128
+	private void heapify(ArrayList<Book> books, int n, int i) { 
         int largest = i; 
         int l = 2*i + 1; 
         int r = 2*i + 2;  
