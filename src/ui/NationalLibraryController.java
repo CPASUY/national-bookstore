@@ -23,7 +23,11 @@ import javafx.stage.WindowEvent;
 import model.Book;
 import model.Client;
 import model.HashTable;
+<<<<<<< HEAD
 import model.Queue;
+=======
+import model.ValueComparator;
+>>>>>>> 6993dcffb0641a033e4508bfadc47d6db9eae1b2
 
 public class NationalLibraryController {
 	
@@ -326,7 +330,6 @@ public class NationalLibraryController {
 	void startSection1(){
 		if(Integer.parseInt(numberOfShelvings.getText()) > 0 && Integer.parseInt(numberCashRegister.getText()) > 0 ) {
 		books.put("1229", getRandomShelving() , "IV", "Good story" , "8/10", "Hitman", 129330, 10);
-		
 		books.put("1231", getRandomShelving() , "V", "Good characters" , "9/10", "HarryPotter", 130000, 10);
 		books.put("1232", getRandomShelving() , "I", "Traumatic" , "7/10", "The King", 100000, 10);
 		books.put("1233", getRandomShelving() , "II", "Violence" , "6/10", "The butterfly", 150000, 10);
@@ -364,15 +367,20 @@ public class NationalLibraryController {
 		String value = sortByBox.getValue();
 		String code = isbnAdd.getText();
 		int quantity = Integer.parseInt(quantityAdd.getText());
-		
 		if(books.search(code) != null) {
 			for(int i =0;i<quantity;i++) {
+				if(books.search(code) != null) {
 				client.getSearchBooks().add(books.search(code));
+<<<<<<< HEAD
 				client.setQuantityB(client.getQuantityB()+1);
+=======
+				books.remove(code);
+				}
+>>>>>>> 6993dcffb0641a033e4508bfadc47d6db9eae1b2
 			}
 		}else {
 			Alert a = new Alert(AlertType.WARNING);
-			a.setContentText("the ISBN was not found");
+			a.setContentText("the ISBN was not found, you entered an invalid code or we are out of stock.");
 			a.show();
 		}
 		if(value.equals("BubbleSort")) {
@@ -567,6 +575,7 @@ public class NationalLibraryController {
         } 
     } 
 	
+	
 	public ArrayList<Book> mergeSort(ArrayList<Book> list){
 		ArrayList<Book> left = new ArrayList<Book>();
 		ArrayList<Book> right = new ArrayList<Book>();
@@ -599,13 +608,14 @@ public class NationalLibraryController {
 		int listIndex = 0;
 		
 		while(leftIndex < left.size() && rightIndex < right.size()) {
-			if(left.get(leftIndex).getValue()-right.get(rightIndex).getValue()<0) {
+			if(new ValueComparator().compare(left.get(leftIndex), right.get(rightIndex))<0) {
 				list.set(listIndex, left.get(leftIndex));
 				leftIndex++;
 			}else {
 				list.set(listIndex, right.get(rightIndex));
 				rightIndex++;
 			}
+			listIndex++;
 		}
 		ArrayList<Book> temp;
 		int tempIndex = 0;
