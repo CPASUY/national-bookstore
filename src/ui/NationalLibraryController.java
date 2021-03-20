@@ -368,7 +368,6 @@ public class NationalLibraryController {
 			for(int i =0;i<quantity;i++) {
 				if(books.search(code) != null) {
 				client.getSearchBooks().add(books.search(code));
-				client.setQuantityB(client.getQuantityB()+1);
 				books.remove(code);
 				}
 			}
@@ -394,6 +393,7 @@ public class NationalLibraryController {
 	void fillMyBasket() {
 		int s=client.getSearchBooks().size();
 		client.setTime(client.getTime()+s);
+		client.fillBuyBooks();
 		clients.add(client);
 		refreshTableMyBasket();
 	}
