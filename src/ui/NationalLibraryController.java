@@ -23,11 +23,8 @@ import javafx.stage.WindowEvent;
 import model.Book;
 import model.Client;
 import model.HashTable;
-<<<<<<< HEAD
 import model.Queue;
-=======
 import model.ValueComparator;
->>>>>>> 6993dcffb0641a033e4508bfadc47d6db9eae1b2
 
 public class NationalLibraryController {
 	
@@ -371,12 +368,9 @@ public class NationalLibraryController {
 			for(int i =0;i<quantity;i++) {
 				if(books.search(code) != null) {
 				client.getSearchBooks().add(books.search(code));
-<<<<<<< HEAD
 				client.setQuantityB(client.getQuantityB()+1);
-=======
 				books.remove(code);
 				}
->>>>>>> 6993dcffb0641a033e4508bfadc47d6db9eae1b2
 			}
 		}else {
 			Alert a = new Alert(AlertType.WARNING);
@@ -406,9 +400,10 @@ public class NationalLibraryController {
 	public void addQueue() {
 		for(int s=0;s<clients.size();s++) {
 			clients2.add(clients.get(s));
+			System.out.println("QUANTITY" +clients2.get(s).getQuantityB());
 		}
-		for(int s=0;s<clients2.size();s++) {
-			queue.enqueue(clients2.get(s));
+		for(int s=0;s<clients.size();s++) {
+			queue.enqueue(clients.get(s));
 		}
 	}
 	@FXML
@@ -431,7 +426,7 @@ public class NationalLibraryController {
 			e.printStackTrace();
 		}
 		tableQueue.getItems().clear();
-		ObservableList<Client> c= FXCollections.observableArrayList(clients);
+		ObservableList<Client> c= FXCollections.observableArrayList(clients2);
 		tableQueue.setItems(c);
 		
 		identificationQueue.setCellValueFactory(new PropertyValueFactory<Client, String>("Identification"));
