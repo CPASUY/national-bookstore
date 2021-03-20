@@ -6,6 +6,7 @@ public class Stack implements StackInterface<Book> {
 	private int size;
 	
 	public Stack() {
+		top = null;
 		size =0;
 	}
 	
@@ -13,25 +14,34 @@ public class Stack implements StackInterface<Book> {
 	public Book pop() {
 		Book n = top;
 		top.getPrevBook().setNextBook(null);
-		top = n.getPrevBook();
+		top = top.getPrevBook();
 		size--;
 		return n;
 	}
+	
+	public Book[] stackToArray() {
+		Book[] books = new Book[size];
+		int i = 0;
+		while(getSize() != 0) {
+			books[i] = pop();
+			i++;
+		}
+		return books;
+	}
 
 	@Override
-	public void push(Book s) {
+	public void push(Book newBook) {
 
-		if(top == null) {
-			top = s;
+		if (top == null) {
+			top = newBook;
 			size++;
 		}
-		else {
-			top.setNextBook(s);
-			s.setPrevBook(top);
-			top = s;
+		else{
+			top.setNextBook(newBook);
+			newBook.setPrevBook(top);
+			top = newBook;
 			size++;
 		}
-		
 	}
 
 	@Override

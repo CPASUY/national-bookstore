@@ -28,6 +28,7 @@ public class HashTable implements HashTableInterface<String,Integer> {
 	}
 	@Override
 	public void put(String key, Integer value, String chapter, String review, String critique, String title, int cost,int quantity) {
+		for(int i=0;i<quantity;i++) {
 		int num = Integer.parseInt(key);
 		int k=hashFuntion(num);
 		Book newN=new Book(key,value,chapter,review,critique,title,cost,quantity);
@@ -41,6 +42,7 @@ public class HashTable implements HashTableInterface<String,Integer> {
 			}
 			current.setNextBook(newN);
 			newN.setPrevBook(current);
+		}
 		}
 	}
 

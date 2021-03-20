@@ -61,15 +61,8 @@ public class Client {
 		for(int i=0; i<searchBooks.size();i++) {
 			stackBooks.push(searchBooks.get(i));
 		}
-		
-		buyBooks = new Book[stackBooks.getSize()];
+		buyBooks = stackBooks.stackToArray();
 		quantityOfBooks = buyBooks.length;
-		
-		//for(int j=0;j<buyBooks.length;j++) {
-		//	buyBooks[j] = stackBooks.pop();
-		//}
-		
-		
 	}
 	
 	public Book[] getBuyBooks() {

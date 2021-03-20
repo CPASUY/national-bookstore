@@ -338,14 +338,16 @@ public class NationalLibraryController {
 		String value = sortByBox.getValue();
 		String code = isbnAdd.getText();
 		int quantity = Integer.parseInt(quantityAdd.getText());
-		
 		if(books.search(code) != null) {
 			for(int i =0;i<quantity;i++) {
+				if(books.search(code) != null) {
 				client.getSearchBooks().add(books.search(code));
+				books.remove(code);
+				}
 			}
 		}else {
 			Alert a = new Alert(AlertType.WARNING);
-			a.setContentText("the ISBN was not found");
+			a.setContentText("the ISBN was not found, you entered an invalid code or we are out of stock.");
 			a.show();
 		}
 		if(value.equals("BubbleSort")) {
