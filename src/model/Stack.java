@@ -15,6 +15,7 @@ public class Stack implements StackInterface<Book> {
 		Book n = top;
 		if(top.getPrevBook()==null) {
 			top=null;
+			size--;
 		}
 		else {
 		top.getPrevBook().setNextBook(null);

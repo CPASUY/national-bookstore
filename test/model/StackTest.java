@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class StackTest {
-	private int s;
 	private String key1,key2,key3,key4;
 	private Integer value1,value2,value3,value4;
 	private String title1,title2,title3,title4;
@@ -15,6 +14,7 @@ public class StackTest {
 	private String critique1,critique2,critique3,critique4;
 	private int cost1,cost2,cost3,cost4;
 	private int quantity1,quantity2,quantity3,quantity4;
+	private Book[] array;
 	private Book b1;
 	private Book b2;
 	private Book b3;
@@ -22,7 +22,6 @@ public class StackTest {
 	private Stack stack;
 	
 	public void setupStage1(){
-		s=2;
 		key1="4353";
 		value1=1;
 		title1="1 miles";
@@ -44,7 +43,6 @@ public class StackTest {
 		stack=new Stack();
 	}
 	public void setupStage2(){
-		s=4;
 		key1="4353";
 		value1=1;
 		title1="1 miles";
@@ -121,5 +119,18 @@ public class StackTest {
 		stack.push(b2);
 		
 		assertEquals(b2,stack.top(),"The top is wrong");
+	}
+	@Test
+	void testTopStackToArray() {
+		setupStage1();
+		
+		stack.push(b1);
+		stack.push(b2);
+		
+		array=new Book[stack.getSize()];
+		array=stack.stackToArray();
+		
+		assertEquals(b1,array[1],"The array is not the same");
+		assertEquals(b2,array[0],"The array is not the same");
 	}
 }

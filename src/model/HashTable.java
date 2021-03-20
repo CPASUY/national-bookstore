@@ -98,4 +98,7 @@ public class HashTable implements HashTableInterface<String,Integer> {
 		}
 		return list;
 	}
+	public ArrayList<Book> getList() {
+		return list;
+	}
 }

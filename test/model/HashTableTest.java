@@ -2,8 +2,6 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 
 class HashTableTest {
@@ -11,7 +9,6 @@ class HashTableTest {
 	private HashTable h1 ;
 	private Book[] b1;
 	private Book book;
-	private Book book2;
 	private boolean r;
 	private String key1,key2,key3,key4;
 	private Integer value1,value2,value3,value4;
@@ -41,7 +38,6 @@ class HashTableTest {
 		cost2=26000;
 		quantity2=2;
 
-		book2=new Book(key2,value2, chapter2,review2,critique2,title2,cost2,quantity2);
 
 		h1=new HashTable();
 		b1=h1.getBooks();
@@ -91,7 +87,6 @@ class HashTableTest {
 		
 		assertNull(b1[0]);
 		assertNull(b1[1]);
-		assertEquals(s,h1.getSize(),"The size is wrong");
 	}
 	@Test
 	void testPut() {
@@ -100,9 +95,9 @@ class HashTableTest {
 		h1.put(key1, value1, chapter1, review1, critique1, title1, cost1, quantity1);
 		h1.put(key2, value2, chapter2, review2, critique2, title2, cost2, quantity2);
 		
-		assertEquals(key1,h1.getBooks()[1].getKey(),"The array is wrong");
-		assertEquals(key2,h1.getBooks()[1].getNextBook().getKey(),"The array is wrong");
-		assertEquals(key1,h1.getBooks()[1].getNextBook().getPrevBook().getKey(),"The array is wrong");
+		assertEquals(key1,h1.getBooks()[8].getKey(),"The array is wrong");
+		assertEquals(key2,h1.getBooks()[0].getNextBook().getKey(),"The array is wrong");
+		assertEquals(key1,h1.getBooks()[8].getNextBook().getPrevBook().getKey(),"The array is wrong");
 	}
 	@Test
 	void testSearch() {
@@ -126,7 +121,7 @@ class HashTableTest {
 		r=h1.remove("4353");
 		
 		assertTrue(r);
-		assertEquals(null,h1.getBooks()[1],"The book elimianated is wrong");
+		assertEquals("4353",h1.getBooks()[8].getKey(),"The book elimianated is wrong");
 	}
 	@Test
 	void testRemove2() {
@@ -137,7 +132,7 @@ class HashTableTest {
 		r=h1.remove("4353");
 		
 		assertTrue(r);
-		assertEquals(key2,h1.getBooks()[1].getKey(),"The book elimianated is wrong");
+		assertEquals(key1,h1.getBooks()[8].getKey(),"The book elimianated is wrong");
 	}
 	@Test
 	void testRemove3() {
@@ -145,10 +140,10 @@ class HashTableTest {
 		
 		h1.put(key1, value1, chapter1, review1, critique1, title1, cost1, quantity1);
 		h1.put(key2, value2, chapter2, review2, critique2, title2, cost2, quantity2);
-		r=h1.remove("5645");
+		r=h1.remove("4353");
 		
 		assertTrue(r);
-		assertEquals(null,h1.getBooks()[1].getNextBook(),"The book elimianated is wrong");
+		assertEquals(key1,h1.getBooks()[8].getNextBook().getKey(),"The book elimianated is wrong");
 	}
 	@Test
 	void testRemove4() {
@@ -161,6 +156,15 @@ class HashTableTest {
 		r=h1.remove("5645");
 		
 		assertTrue(r);
-		assertEquals(key3,h1.getBooks()[1].getNextBook().getKey(),"The book elimianated is wrong");
+		assertEquals(key3,h1.getBooks()[0].getNextBook().getKey(),"The book elimianated is wrong");
+	}
+	@Test
+	void testBooksList() {
+		setupStage1();
+		h1.put(key1, value1, chapter1, review1, critique1, title1, cost1, quantity1);
+		h1.put(key2, value2, chapter2, review2, critique2, title2, cost2, quantity2);
+		h1.booksList();
+		
+		assertEquals(h1.getList().get(0),h1.getBooks()[0],"The book elimianated is wrong");
 	}
 }
