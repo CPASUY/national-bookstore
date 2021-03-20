@@ -465,7 +465,7 @@ public class NationalLibraryController {
 				cont++;
 			}
 		}
-		int c=cont;
+		
 		while(cont!=paymentBoxes.length) {
 			cont=0;
 			paymentBooks();
