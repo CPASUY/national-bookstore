@@ -23,6 +23,7 @@ import javafx.stage.WindowEvent;
 import model.Book;
 import model.Client;
 import model.HashTable;
+import model.ValueComparator;
 
 public class NationalLibraryController {
 	
@@ -430,6 +431,7 @@ public class NationalLibraryController {
         } 
     } 
 	
+	
 	public ArrayList<Book> mergeSort(ArrayList<Book> list){
 		ArrayList<Book> left = new ArrayList<Book>();
 		ArrayList<Book> right = new ArrayList<Book>();
@@ -462,13 +464,14 @@ public class NationalLibraryController {
 		int listIndex = 0;
 		
 		while(leftIndex < left.size() && rightIndex < right.size()) {
-			if((left.get(leftIndex).getValue()-right.get(rightIndex).getValue())<0) {
+			if(new ValueComparator().compare(left.get(leftIndex), right.get(rightIndex))<0) {
 				list.set(listIndex, left.get(leftIndex));
 				leftIndex++;
 			}else {
 				list.set(listIndex, right.get(rightIndex));
 				rightIndex++;
 			}
+			listIndex++;
 		}
 		ArrayList<Book> temp;
 		int tempIndex = 0;
