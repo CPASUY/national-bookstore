@@ -23,6 +23,7 @@ import javafx.stage.WindowEvent;
 import model.Book;
 import model.Client;
 import model.HashTable;
+import model.ValueComparator;
 
 public class NationalLibraryController {
 	
@@ -119,13 +120,6 @@ public class NationalLibraryController {
     private TextField numberCashRegister;
     
     private HashTable books;
-    
-    
-   
-    
-    
-    
-    
     
     
 	public NationalLibraryController(Stage s) throws NoIdentificationException {
@@ -287,7 +281,25 @@ public class NationalLibraryController {
 		rackMyBasket.setCellValueFactory(new PropertyValueFactory<Book, Integer>("value"));
 	}
 	
-	
+	public void loadTableQue() {
+		basePane.setOnKeyPressed(null);
+    	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion2.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		tableMyBasket.getItems().clear();
+		Book[] list=client.getBuyBooks();
+		ObservableList<Book>books= FXCollections.observableArrayList(list);
+		tableMyBasket.setItems(books);
+		isbnMyBasket.setCellValueFactory(new PropertyValueFactory<Book, String>("key"));
+		rackMyBasket.setCellValueFactory(new PropertyValueFactory<Book, Integer>("value"));
+	}
 	@FXML
 	void startSection1(){
 		if(Integer.parseInt(numberOfShelvings.getText()) > 0 && Integer.parseInt(numberCashRegister.getText()) > 0 ) {
@@ -418,6 +430,7 @@ public class NationalLibraryController {
         } 
     } 
 	
+	
 	public ArrayList<Book> mergeSort(ArrayList<Book> list){
 		ArrayList<Book> left = new ArrayList<Book>();
 		ArrayList<Book> right = new ArrayList<Book>();
@@ -450,13 +463,14 @@ public class NationalLibraryController {
 		int listIndex = 0;
 		
 		while(leftIndex < left.size() && rightIndex < right.size()) {
-			if(left.get(leftIndex).getValue()-right.get(rightIndex).getValue()<0) {
+			if(new ValueComparator().compare(left.get(leftIndex), right.get(rightIndex))<0) {
 				list.set(listIndex, left.get(leftIndex));
 				leftIndex++;
 			}else {
 				list.set(listIndex, right.get(rightIndex));
 				rightIndex++;
 			}
+			listIndex++;
 		}
 		ArrayList<Book> temp;
 		int tempIndex = 0;
