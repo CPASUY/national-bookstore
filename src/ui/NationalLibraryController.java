@@ -399,8 +399,7 @@ public class NationalLibraryController {
 	}
 	public void addQueue() {
 		for(int s=0;s<clients.size();s++) {
-			clients2.add(clients.get(s));
-			System.out.println("QUANTITY" +clients2.get(s).getQuantityB());
+			clients2.add(clients.get(s).clone());
 		}
 		for(int s=0;s<clients.size();s++) {
 			queue.enqueue(clients.get(s));

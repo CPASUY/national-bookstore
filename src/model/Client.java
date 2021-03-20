@@ -69,7 +69,16 @@ public class Client implements Comparable<Client> {
 			throw new NoIdentificationException();
 		}
 	}
-
+	public Client clone() {
+		Client c = null;
+		try {
+			c = new Client(identification);
+			c.setQuantityB(getQuantityB());
+		} catch (NoIdentificationException e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
 	public Client getNextClient() {
 		return nextClient;
 	}
@@ -107,8 +116,8 @@ public class Client implements Comparable<Client> {
 	}
 	public void lisOfISBN() {
 		String b="";
-		for(Book myBooks:buyBooks) {
-			b += myBooks.getKey()+"\n";
+		for(int s=buyBooks.length-1;s>=0;s--) {
+			b += buyBooks[s].getKey()+"\n";
 		}
 		books=b;
 		buyBooks = stackBooks.stackToArray();
