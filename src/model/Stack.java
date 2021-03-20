@@ -12,9 +12,14 @@ public class Stack implements StackInterface<Book> {
 	@Override
 	public Book pop() {
 		Book n = top;
+		if(top.getPrevBook()==null) {
+			top=null;
+		}
+		else {
 		top.getPrevBook().setNextBook(null);
 		top = top.getPrevBook();
 		size--;
+		}
 		return n;
 	}
 
@@ -30,15 +35,6 @@ public class Stack implements StackInterface<Book> {
 			top.setNextBook(s);
 			top = s;
 			size++;
-
-		if(top==null) {
-			top=s;
-		}
-		else {
-			top.setNextBook(s);
-			s.setPrevBook(top);
-			top = s;
-		}
 		}
 	}
 

@@ -1,8 +1,8 @@
 package ui;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
-
 import exceptions.NoIdentificationException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +23,7 @@ import javafx.stage.WindowEvent;
 import model.Book;
 import model.Client;
 import model.HashTable;
+import model.Queue;
 
 public class NationalLibraryController {
 	
@@ -120,19 +121,37 @@ public class NationalLibraryController {
     
     private HashTable books;
     
+    private int numClients;
+    
+    private Queue queue;
+    
+    private ArrayList<Client> clients;
+    private ArrayList<Client> clients2;
+    
+    private ArrayList<Client> updateClients;
+    
+    private Client[] paymentBoxes;
+    
+    private int cont;
     
 	public NationalLibraryController(Stage s) throws NoIdentificationException {
 		stage=s;
 		books = new HashTable();
 		stage.setResizable(false);
+		numClients=0;
+		clients=new ArrayList<Client>();
+		clients2=new ArrayList<Client>();
+		updateClients=new ArrayList<Client>();
+		queue=new Queue();
+		cont=0;
 	}
 	
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-
 			
 			@Override
 			public void handle(WindowEvent event) {
+				numClients=0;
 				System.out.println("Closing the window!");
 			}
 		});
@@ -194,6 +213,10 @@ public class NationalLibraryController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		loadQueueTable();
+		paymentBooks();
+		getFinalReport();
+		exitTable();
 	}
 	
 	public void loadBooksList() {
@@ -313,6 +336,7 @@ public class NationalLibraryController {
 		books.put("1237", getRandomShelving() , "VII", "Happy" , "9/10", "Gentleman", 150000, 10);
 		books.put("1238", getRandomShelving() , "IX", "Mystery" , "10/10", "Agent007", 200000, 10);
 		books.put("1239", getRandomShelving() , "V", "Amazing" , "8/10", "GoodPlace", 160000, 10);
+		paymentBoxes=new Client[Integer.parseInt(numberCashRegister.getText())];
 		loadSection1();
 		}
 		else {
@@ -326,6 +350,8 @@ public class NationalLibraryController {
 	void goToSection2(){
 			try {
 				client = new Client(identificationTextField.getText());
+				numClients++;
+				client.setTime(numClients);
 				loadSection2();
 			} catch (NoIdentificationException e) {
 				Alert a = new Alert(AlertType.WARNING);
@@ -342,6 +368,7 @@ public class NationalLibraryController {
 		if(books.search(code) != null) {
 			for(int i =0;i<quantity;i++) {
 				client.getSearchBooks().add(books.search(code));
+				client.setQuantityB(client.getQuantityB()+1);
 			}
 		}else {
 			Alert a = new Alert(AlertType.WARNING);
@@ -363,20 +390,130 @@ public class NationalLibraryController {
 	
 	@FXML
 	void fillMyBasket() {
-		client.fillBuyBooks();
+		int s=client.getSearchBooks().size();
+		client.setTime(client.getTime()+s);
+		clients.add(client);
 		refreshTableMyBasket();
 	}
-	
+	public void addQueue() {
+		for(int s=0;s<clients.size();s++) {
+			clients2.add(clients.get(s));
+		}
+		for(int s=0;s<clients2.size();s++) {
+			queue.enqueue(clients2.get(s));
+		}
+	}
 	@FXML
 	void addOtherClient(){
 		loadSection1();
 	}
-	
+	public void sortClientsList() {
+		Collections.sort(clients);
+	}
+	public void loadQueueTable() {
+		basePane.setOnKeyPressed(null);
+    	FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Seccion3.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		tableQueue.getItems().clear();
+		ObservableList<Client> c= FXCollections.observableArrayList(clients);
+		tableQueue.setItems(c);
+		
+		identificationQueue.setCellValueFactory(new PropertyValueFactory<Client, String>("Identification"));
+		quantityBooksQueue.setCellValueFactory(new PropertyValueFactory<Client,Integer>("quantityB"));
+	}
+	public void exitTable() {
+		tableExit.getItems().clear();
+		ObservableList<Client>c =FXCollections.observableArrayList(updateClients);
+		tableExit.setItems(c);
+		identificationExit.setCellValueFactory(new PropertyValueFactory<Client, String>("Identification"));
+		isbnsBooksExit.setCellValueFactory(new PropertyValueFactory<Client,String>("books"));
+		priceExit.setCellValueFactory(new PropertyValueFactory<Client,Integer>("price"));
+	}
 	@FXML
 	void purchase(){
+		sortClientsList();
+		addQueue();
+		numClients=0;
 		loadSection3();
 	}
-	
+	public void paymentBooks() {
+		boolean verified;
+		for(int s=0;s<paymentBoxes.length;s++) {
+			if(queue.front()!=null) {
+				if(paymentBoxes[s]==null) {
+					paymentBoxes[s]=queue.dequeue();
+				}
+			}
+		}
+		verified=counting();
+		if(verified) {
+			countingAndAdd();
+		}
+		for(int s=0;s<paymentBoxes.length;s++) {
+			if(paymentBoxes[s]==null){
+				cont++;
+			}
+		}
+		int c=cont;
+		while(cont!=paymentBoxes.length) {
+			cont=0;
+			paymentBooks();
+		}
+	}
+	public boolean verifiedQuantity() {
+		boolean v=false;
+		for(int w=0;w<paymentBoxes.length;w++) {
+			if(paymentBoxes[w]!=null) {
+				if(paymentBoxes[w].getQuantityB()==0) {
+					v=true;
+				}
+			}
+		}
+		return v;
+	}
+	public void getFinalReport() {
+		for(int s=0;s<updateClients.size();s++) {
+			updateClients.get(s).lisOfISBN();
+			updateClients.get(s).priceBooks();
+		}
+	}
+	public void countingAndAdd() {
+		for(int s=0;s<paymentBoxes.length;s++) {
+			if(paymentBoxes[s]!=null) {
+				if(paymentBoxes[s].getQuantityB()!=0) {
+					paymentBoxes[s].setQuantityB(paymentBoxes[s].getQuantityB()-1);
+				}
+
+				else {
+					updateClients.add(paymentBoxes[s]);
+					paymentBoxes[s]=null;
+					if(queue.front()!=null) {
+						paymentBoxes[s]=queue.dequeue();
+					}
+				}
+			}
+		}
+		if(verifiedQuantity()) {
+			countingAndAdd();
+		}
+	}
+	public boolean counting() {
+		for(int s=0;s<paymentBoxes.length;s++) {
+			if(paymentBoxes[s]!=null) {
+				paymentBoxes[s].setQuantityB(paymentBoxes[s].getQuantityB()-1);
+			}
+		}
+		boolean verified=verifiedQuantity();
+		return verified;
+	}
 	@FXML
 	void finishAndExit() {
 		System.exit(0);

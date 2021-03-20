@@ -28,9 +28,9 @@ public class Queue implements QueueInterface<Client> {
 
 	@Override
 	public Client dequeue() {
-		Client eliminated = last;
-		if(last.getPrevClient()!=null) {
-			last = last.getPrevClient();
+		Client eliminated = front;
+		if(front.getNextClient()!=null) {
+			front = front.getNextClient();
 		}
 		else {
 			front=null;

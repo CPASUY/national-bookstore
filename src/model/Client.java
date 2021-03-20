@@ -4,23 +4,55 @@ import java.util.ArrayList;
 
 import exceptions.NoIdentificationException;
 
-public class Client {
+public class Client implements Comparable<Client> {
 	
 	String identification;
-	int quantityOfBooks;
+	int quantityB;
 	private Stack stackBooks;
 	private Book[] buyBooks;
 	private ArrayList<Book> searchBooks;
 	private Client nextClient;
 	private Client prevClient;
+	private Integer time;
+	private Integer price;
+	private String books;
 	
-	
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public String getBooks() {
+		return books;
+	}
+
+	public void setBooks(String books) {
+		this.books = books;
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
 	public Client getPrevClient() {
 		return prevClient;
 	}
 
 	public void setPrevClient(Client prevClient) {
 		this.prevClient = prevClient;
+	}
+	public int getQuantityB() {
+		return quantityB;
+	}
+	public void setQuantityB(int quantityB) {
+		this.quantityB = quantityB;
 	}
 
 	public Client (String identification) throws NoIdentificationException {
@@ -29,7 +61,7 @@ public class Client {
 			stackBooks = new Stack();
 			searchBooks = new ArrayList<Book>();
 			buyBooks = new Book[5];
-			quantityOfBooks = 0;
+			quantityB = 0;
 		}
 		else {
 			throw new NoIdentificationException();
@@ -67,10 +99,28 @@ public class Client {
 		for(int i=0;i<buyBooks.length;i++) {
 			buyBooks[i] = stackBooks.pop();
 		}
-		quantityOfBooks = buyBooks.length;
+		quantityB = buyBooks.length;
 	}
-	
+	public void priceBooks() {
+		int p=0;
+		for(int s=0;s<searchBooks.size();s++) {
+			p+=searchBooks.get(s).getCost();
+		}
+		price=p;
+	}
+	public void lisOfISBN() {
+		String b="";
+		for(Book myBooks:buyBooks) {
+			b += myBooks.getKey()+"\n";
+		}
+		books=b;
+	}
 	public Book[] getBuyBooks() {
 		return buyBooks;
+	}
+
+	@Override
+	public int compareTo(Client c) {
+		return time.compareTo(c.getTime());
 	}
 }
