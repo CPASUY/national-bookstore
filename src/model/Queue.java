@@ -38,6 +38,7 @@ public class Queue implements QueueInterface<Client> {
 		}
 		return eliminated;
 	}
+	
 
 	@Override
 	public Client front() {	
