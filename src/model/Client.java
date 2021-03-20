@@ -60,13 +60,10 @@ public class Client implements Comparable<Client> {
 			this.identification = identification;
 			stackBooks = new Stack();
 			searchBooks = new ArrayList<Book>();
-<<<<<<< HEAD
 			buyBooks = new Book[5];
 			quantityB = 0;
-=======
 			buyBooks = new Book[0];
 			quantityOfBooks = 0;
->>>>>>> 6993dcffb0641a033e4508bfadc47d6db9eae1b2
 		}
 		else {
 			throw new NoIdentificationException();
@@ -98,7 +95,6 @@ public class Client implements Comparable<Client> {
 		for(int i=0; i<searchBooks.size();i++) {
 			stackBooks.push(searchBooks.get(i));
 		}
-<<<<<<< HEAD
 		
 		buyBooks = new Book[stackBooks.getSize()];
 		
@@ -120,10 +116,8 @@ public class Client implements Comparable<Client> {
 			b += myBooks.getKey()+"\n";
 		}
 		books=b;
-=======
 		buyBooks = stackBooks.stackToArray();
 		quantityOfBooks = buyBooks.length;
->>>>>>> 6993dcffb0641a033e4508bfadc47d6db9eae1b2
 	}
 	public Book[] getBuyBooks() {
 		return buyBooks;
