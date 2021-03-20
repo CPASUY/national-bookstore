@@ -63,11 +63,7 @@ public class Client implements Comparable<Client> {
 			buyBooks = new Book[5];
 			quantityB = 0;
 			buyBooks = new Book[0];
-<<<<<<< HEAD
-			quantityOfBooks = 0;
-=======
 			quantityB = 0;
->>>>>>> 16e9d1e72f9dbcf691f21c75b11ceae9c0c3afee
 		}
 		else {
 			throw new NoIdentificationException();
@@ -108,16 +104,13 @@ public class Client implements Comparable<Client> {
 		for(int i=0; i<searchBooks.size();i++) {
 			stackBooks.push(searchBooks.get(i));
 		}
-<<<<<<< HEAD
-		
+	
 		buyBooks = new Book[stackBooks.getSize()];
 		
 		for(int i=0;i<buyBooks.length;i++) {
 			buyBooks[i] = stackBooks.pop();
 		}
-=======
 		buyBooks = stackBooks.stackToArray();
->>>>>>> 16e9d1e72f9dbcf691f21c75b11ceae9c0c3afee
 		quantityB = buyBooks.length;
 	}
 	public void priceBooks() {
@@ -134,11 +127,7 @@ public class Client implements Comparable<Client> {
 		}
 		books=b;
 		buyBooks = stackBooks.stackToArray();
-<<<<<<< HEAD
-		quantityOfBooks = buyBooks.length;
-=======
 		quantityB= buyBooks.length;
->>>>>>> 16e9d1e72f9dbcf691f21c75b11ceae9c0c3afee
 	}
 	public Book[] getBuyBooks() {
 		return buyBooks;

@@ -368,10 +368,7 @@ public class NationalLibraryController {
 			for(int i =0;i<quantity;i++) {
 				if(books.search(code) != null) {
 				client.getSearchBooks().add(books.search(code));
-<<<<<<< HEAD
 				client.setQuantityB(client.getQuantityB()+1);
-=======
->>>>>>> 16e9d1e72f9dbcf691f21c75b11ceae9c0c3afee
 				books.remove(code);
 				}
 			}
