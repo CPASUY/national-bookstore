@@ -368,7 +368,10 @@ public class NationalLibraryController {
 			for(int i =0;i<quantity;i++) {
 				if(books.search(code) != null) {
 				client.getSearchBooks().add(books.search(code));
+<<<<<<< HEAD
 				client.setQuantityB(client.getQuantityB()+1);
+=======
+>>>>>>> 16e9d1e72f9dbcf691f21c75b11ceae9c0c3afee
 				books.remove(code);
 				}
 			}
@@ -394,15 +397,16 @@ public class NationalLibraryController {
 	void fillMyBasket() {
 		int s=client.getSearchBooks().size();
 		client.setTime(client.getTime()+s);
+		client.fillBuyBooks();
 		clients.add(client);
 		refreshTableMyBasket();
 	}
 	public void addQueue() {
 		for(int s=0;s<clients.size();s++) {
-			clients2.add(clients.get(s));
+			clients2.add(clients.get(s).clone());
 		}
-		for(int s=0;s<clients2.size();s++) {
-			queue.enqueue(clients2.get(s));
+		for(int s=0;s<clients.size();s++) {
+			queue.enqueue(clients.get(s));
 		}
 	}
 	@FXML
@@ -425,7 +429,7 @@ public class NationalLibraryController {
 			e.printStackTrace();
 		}
 		tableQueue.getItems().clear();
-		ObservableList<Client> c= FXCollections.observableArrayList(clients);
+		ObservableList<Client> c= FXCollections.observableArrayList(clients2);
 		tableQueue.setItems(c);
 		
 		identificationQueue.setCellValueFactory(new PropertyValueFactory<Client, String>("Identification"));
