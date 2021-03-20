@@ -107,6 +107,7 @@ public class Client implements Comparable<Client> {
 		buyBooks = stackBooks.stackToArray();
 		quantityB = buyBooks.length;
 	}
+	
 	public void priceBooks() {
 		int p=0;
 		for(int s=0;s<searchBooks.size();s++) {
