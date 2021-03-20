@@ -292,7 +292,6 @@ public class NationalLibraryController {
 	void startSection1(){
 		if(Integer.parseInt(numberOfShelvings.getText()) > 0 && Integer.parseInt(numberCashRegister.getText()) > 0 ) {
 		books.put("1229", getRandomShelving() , "IV", "Good story" , "8/10", "Hitman", 129330, 10);
-		
 		books.put("1231", getRandomShelving() , "V", "Good characters" , "9/10", "HarryPotter", 130000, 10);
 		books.put("1232", getRandomShelving() , "I", "Traumatic" , "7/10", "The King", 100000, 10);
 		books.put("1233", getRandomShelving() , "II", "Violence" , "6/10", "The butterfly", 150000, 10);

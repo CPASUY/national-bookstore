@@ -28,7 +28,7 @@ public class Client {
 			this.identification = identification;
 			stackBooks = new Stack();
 			searchBooks = new ArrayList<Book>();
-			buyBooks = new Book[5];
+			buyBooks = new Book[0];
 			quantityOfBooks = 0;
 		}
 		else {
@@ -63,11 +63,13 @@ public class Client {
 		}
 		
 		buyBooks = new Book[stackBooks.getSize()];
-		
-		for(int i=0;i<buyBooks.length;i++) {
-			buyBooks[i] = stackBooks.pop();
-		}
 		quantityOfBooks = buyBooks.length;
+		
+		//for(int j=0;j<buyBooks.length;j++) {
+		//	buyBooks[j] = stackBooks.pop();
+		//}
+		
+		
 	}
 	
 	public Book[] getBuyBooks() {
