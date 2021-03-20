@@ -23,11 +23,8 @@ import javafx.stage.WindowEvent;
 import model.Book;
 import model.Client;
 import model.HashTable;
-<<<<<<< HEAD
 import model.Queue;
-=======
 import model.ValueComparator;
->>>>>>> 6993dcffb0641a033e4508bfadc47d6db9eae1b2
 
 public class NationalLibraryController {
 	
@@ -371,12 +368,9 @@ public class NationalLibraryController {
 			for(int i =0;i<quantity;i++) {
 				if(books.search(code) != null) {
 				client.getSearchBooks().add(books.search(code));
-<<<<<<< HEAD
 				client.setQuantityB(client.getQuantityB()+1);
-=======
 				books.remove(code);
 				}
->>>>>>> 6993dcffb0641a033e4508bfadc47d6db9eae1b2
 			}
 		}else {
 			Alert a = new Alert(AlertType.WARNING);
