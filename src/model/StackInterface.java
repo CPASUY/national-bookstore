@@ -10,4 +10,6 @@ public interface StackInterface<T> {
 	
 	public boolean empty();
 	
+	public Book[] stackToArray();
+	
 }

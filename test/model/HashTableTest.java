@@ -167,4 +167,11 @@ class HashTableTest {
 		
 		assertEquals(h1.getList().get(0),h1.getBooks()[0],"The book elimianated is wrong");
 	}
+
+	void testHashFuntion() {
+		setupStage1();
+		int m=Integer.parseInt(key1);
+		h1.hashFuntion(m);
+		assertEquals(8,m,"The hash funtion is wrong");
+	}
 }

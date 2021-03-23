@@ -24,7 +24,7 @@ public class Stack implements StackInterface<Book> {
 		}
 		return n;
 	}
-	
+	@Override
 	public Book[] stackToArray() {
 		Book[] books = new Book[size];
 		int i = 0;
