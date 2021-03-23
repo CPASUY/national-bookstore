@@ -15,7 +15,26 @@ For this, a program was implemented where people could enter the library and cou
  available payment box that is.
  <br>
 <strong>You can found the documention here:</strong><br>
- - [TAD Of Data Structure](doc/TAD_Estructuras.pdf)<br>
- - [Test Case Design](doc/Diseño_de_casos_de_prueba.pdf)<br>
- - [Diagram Class](doc/Diseño_de_casos_de_prueba.pdf)<br>
-
+ 1 [TAD Of Data Structure](doc/TAD_Estructuras.pdf)<br>
+ 2 [Test Case Design](doc/Diseño_de_casos_de_prueba.pdf)<br>
+ 3 [Diagram Class](doc/Diseño_de_casos_de_prueba.pdf)<br>
+<br>
+<em>This project implements:<br>
+Data Structure:<br>
+  ArrayList<br>  
+  Array<br>  
+  Linked List<br>
+  Queue<br>
+  Stack<br>  
+  HashTable<br>  
+Recursive<br>
+Exceptions<br>
+Interfaces<br>
+JavaFX<br>
+<em>SPECIFICATIONS:<br>
+Java 8 <br>
+Windows 10 <br>
+Eclipse</em><br>
+<em>@Cpasuy<br>
+@JunaiCode<br>
+@anderson-154</em>
