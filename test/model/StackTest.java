@@ -86,10 +86,16 @@ public class StackTest {
 	void testPush() {
 		setupStage1();
 		
+		assertEquals(null,stack.top(),"The top is not null");
+		
 		stack.push(b1);
+		
+		assertEquals(null,stack.top().getNextBook(),"The next book to top is not null");
+		
 		stack.push(b2);
 		
 		assertEquals(b2,stack.top(),"The top is wrong");
+		
 		assertEquals(b1,stack.top().getPrevBook(),"The conexions are wrong");
 	}
 	@Test
@@ -119,6 +125,10 @@ public class StackTest {
 		stack.push(b2);
 		
 		assertEquals(b2,stack.top(),"The top is wrong");
+		
+		stack.pop();
+		
+		assertEquals(b1,stack.top(),"The top is wrong");
 	}
 	@Test
 	void testTopStackToArray() {

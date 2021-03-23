@@ -112,6 +112,9 @@ class HashTableTest {
 		book=h1.search("4353");
 		
 		assertEquals(key1,book.getKey(),"The book searched is wrong");
+		
+		book=h1.search("2222");
+		assertEquals(null,book,"The book searched is wrong");
 	}
 	@Test
 	void testRemove1() {

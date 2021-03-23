@@ -25,16 +25,16 @@
           <TableColumn fx:id="rackSearchBooks" prefWidth="75.0" text="Rack" />
         </columns>
       </TableView>
-      <Button layoutX="486.0" layoutY="386.0" mnemonicParsing="false" onAction="#purchase" text="Purchase" />
+      <Button layoutX="501.0" layoutY="386.0" mnemonicParsing="false" onAction="#purchase" text="Purchase" />
       <TableView fx:id="tableMyBasket" layoutX="390.0" layoutY="163.0" prefHeight="201.0" prefWidth="151.0">
         <columns>
           <TableColumn fx:id="isbnMyBasket" prefWidth="75.0" text="ISBN" />
           <TableColumn fx:id="rackMyBasket" prefWidth="75.0" text="Rack" />
         </columns>
       </TableView>
-      <Button layoutX="237.0" layoutY="303.0" mnemonicParsing="false" onAction="#fillMyBasket" prefWidth="101.0" text="Fill my basket" />
+      <Button layoutX="237.0" layoutY="303.0" mnemonicParsing="false" onAction="#fillMyBasket" prefWidth="101.0" style="-fx-background-color: 8A8B92;" text="Fill my basket" />
       <ChoiceBox fx:id="sortByBox" layoutX="247.0" layoutY="228.0" prefHeight="25.0" prefWidth="81.0" />
-      <Button layoutX="373.0" layoutY="386.0" mnemonicParsing="false" onAction="#addOtherClient" text="Add other client" />
+      <Button layoutX="363.0" layoutY="386.0" mnemonicParsing="false" onAction="#addOtherClient" style="-fx-background-color: 7E7A78;" text="Add other client" />
       <TextField fx:id="quantityAdd" layoutX="104.0" layoutY="127.0" prefHeight="25.0" prefWidth="49.0" />
       <TextField fx:id="isbnAdd" layoutX="28.0" layoutY="127.0" prefHeight="25.0" prefWidth="63.0" />
       <Label layoutX="41.0" layoutY="101.0" text="ISBN">

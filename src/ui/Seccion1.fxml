@@ -29,7 +29,7 @@
             <TableColumn fx:id="idQuantity" prefWidth="60.0" text="Quantity" />
         </columns>
       </TableView>
-      <Button layoutX="363.0" layoutY="108.0" mnemonicParsing="false" onAction="#goToSection2" text="Go to next section" />
+      <Button layoutX="406.0" layoutY="108.0" mnemonicParsing="false" onAction="#goToSection2" style="-fx-background-color: 8A8B92;" text="Go to next section" />
       <TextField fx:id="identificationTextField" layoutX="195.0" layoutY="108.0" />
       <Label layoutX="43.0" layoutY="105.0" text="Identification:">
          <font>

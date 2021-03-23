@@ -38,8 +38,16 @@ public class QueueTest {
 	void testEnqueue() {
 		setupStage1();
 		
+		assertEquals(null,q.front(),"The front of the queue is wrong");
+		
 		q.enqueue(c1);
+		assertEquals(c1.getIdentification(),q.front().getIdentification(),"The front of the queue is wrong");
+		assertEquals(c1.getIdentification(),q.getLast().getIdentification(),"The last of the queue is wrong");
+		
 		q.enqueue(c2);
+		assertEquals(c1.getIdentification(),q.front().getIdentification(),"The front of the queue is wrong");
+		assertEquals(c2.getIdentification(),q.getLast().getIdentification(),"The last of the queue is wrong");
+		
 		q.enqueue(c3);
 		assertEquals(c1.getIdentification(),q.front().getIdentification(),"The front of the queue is wrong");
 		assertEquals(c3.getIdentification(),q.getLast().getIdentification(),"The last of the queue is wrong");
@@ -69,7 +77,12 @@ public class QueueTest {
 	@Test
 	void tesFront() {
 		setupStage1();
+		assertEquals(null,q.front(),"The front of the queue is wrong");
+		
 		q.enqueue(c1);
+		assertEquals(c1.getIdentification(),q.front().getIdentification(),"The front of the queue is wrong");
+		assertEquals(c1.getIdentification(),q.getLast().getIdentification(),"The last of the queue is wrong");
+		
 		q.enqueue(c2);
 		q.enqueue(c3);
 		
