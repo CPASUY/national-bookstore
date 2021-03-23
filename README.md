@@ -2,7 +2,7 @@
 <strong>National BookStore</strong>
 
 The book culture has been reborn in the city of Cali, that is why a very important bookstore is about to open its doors in <br>
-the Sultana del Valle. This new company dedicated to the sale of books of multiple genres and different languages ​​is <br>
+the Sultana del Valle. This new company dedicated to the sale of books of multiple genres and different languages is <br>
 characterized by a very particular, innovative and efficient style when it comes to serving its users.<br>
 ![Alt text](images/BackGround/Presentation.png?raw=true "Title")<br>
 <br>
@@ -15,18 +15,20 @@ For this, a program was implemented where people could enter the library and cou
  available payment box that is.
  <br>
 <strong>You can found the documention here:</strong><br>
- 1 [TAD Of Data Structure](doc/TAD_Estructuras.pdf)<br>
- 2 [Test Case Design](doc/Diseño_de_casos_de_prueba.pdf)<br>
- 3 [Diagram Class](doc/Diseño_de_casos_de_prueba.pdf)<br>
+ - [Engineering Method](doc/Engineering method and Requeriments.pdf)<br>
+ - [Complexity Analysis](doc/Complexity Analysis.pdf)<br>
+ - [TAD Of Data Structure](doc/TAD_Estructuras.pdf)<br>
+ - [Test Case Design](doc/Test.pdf)<br>
+ - [Diagram Class](doc/Diseño_de_casos_de_prueba.pdf)<br>
 <br>
 <em>This project implements:<br>
 Data Structure:<br>
-  ArrayList<br>  
-  Array<br>  
-  Linked List<br>
-  Queue<br>
-  Stack<br>  
-  HashTable<br>  
+ - ArrayList<br>  
+ - Array<br>  
+ - Linked List<br>
+ - Queue<br>
+ - Stack<br>  
+ - HashTable<br>  
 Recursive<br>
 Exceptions<br>
 Interfaces<br>
