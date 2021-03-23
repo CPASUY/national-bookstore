@@ -15,11 +15,11 @@ For this, a program was implemented where people could enter the library and cou
  available payment box that is.
  <br>
 <strong>You can found the documention here:</strong><br>
- - [Engineering Method](doc/Engineering method and Requeriments.pdf)<br>
- - [Complexity Analysis](doc/Complexity Analysis.pdf)<br>
- - [TAD Of Data Structure](doc/TAD_Estructuras.pdf)<br>
- - [Test Case Design](doc/Test.pdf)<br>
- - [Diagram Class](doc/Diseño_de_casos_de_prueba.pdf)<br>
+ - [Engineering Method](docs/Engineering method and Requeriments.pdf)<br>
+ - [Complexity Analysis](docs/Complexity Analysis.pdf)<br>
+ - [TAD Of Data Structure](docs/TAD_Estructuras.pdf)<br>
+ - [Test Case Design](docs/Test.pdf)<br>
+ - [Diagram Class](docs/Diseño_de_casos_de_prueba.pdf)<br>
 <br>
 <em>This project implements:<br>
 Data Structure:<br>
