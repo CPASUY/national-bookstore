@@ -15,9 +15,9 @@ For this, a program was implemented where people could enter the library and cou
  available payment box that is.
  <br>
 <strong>You can found the documention here:</strong><br>
- - [Engineering Method](docs/Engineering method and Requeriments.pdf)<br>
- - [Complexity Analysis](docs/Complexity Analysis.pdf)<br>
- - [TAD Of Data Structure](docs/TAD_Estructuras.pdf)<br>
+ - [Engineering Method](docs/EngineeringMethodAndRequeriments.pdf)<br>
+ - [Complexity Analysis](docs/ComplexityAnalysis.pdf)<br>
+ - [TAD Of Data Structure](docs/TAD_Structures.pdf)<br>
  - [Test Case Design](docs/Test.pdf)<br>
  - [Diagram Class](docs/Diseño_de_casos_de_prueba.pdf)<br>
 <br>
