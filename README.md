@@ -19,7 +19,7 @@ For this, a program was implemented where people could enter the library and cou
  - [Complexity Analysis](docs/ComplexityAnalysis.pdf)<br>
  - [TAD Of Data Structure](docs/TAD_Structures.pdf)<br>
  - [Test Case Design](docs/Test.pdf)<br>
- - [Diagram Class](docs/Diseño_de_casos_de_prueba.pdf)<br>
+ - [Diagram Class](docs/Class Diagram.png)<br>
 <br>
 <em>This project implements:<br>
 Data Structure:<br>
